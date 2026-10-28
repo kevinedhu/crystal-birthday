@@ -1,0 +1,98 @@
+/** Configuración de Tailwind (v3) — misma paleta/tipografía que usaba el CDN, ahora compilada de forma estática. */
+module.exports = {
+  darkMode: 'class',
+  content: ['./code.html'],
+  theme: {
+    extend: {
+      colors: {
+        'on-primary-fixed-variant': '#5e3b59',
+        'error-container': '#93000a',
+        'on-secondary': '#451e5d',
+        'on-primary': '#462541',
+        'secondary-container': '#5f3878',
+        'surface-container-high': '#2a2a2c',
+        'tertiary-fixed': '#dbe5de',
+        'outline-variant': '#4e444a',
+        surface: '#131315',
+        tertiary: '#bfc9c3',
+        'inverse-surface': '#e5e1e4',
+        'on-error': '#690005',
+        'primary-fixed-dim': '#e7b8dd',
+        'surface-container-lowest': '#0e0e10',
+        'on-tertiary-fixed-variant': '#3f4944',
+        'secondary-fixed': '#f4d9ff',
+        'on-surface': '#e5e1e4',
+        'on-secondary-fixed': '#2e0447',
+        'surface-container': '#201f21',
+        'inverse-on-surface': '#313032',
+        'on-primary-fixed': '#2e102b',
+        'inverse-primary': '#785271',
+        'on-tertiary': '#29322e',
+        background: '#131315',
+        'on-surface-variant': '#d1c3cb',
+        'on-secondary-container': '#d6a7f0',
+        'on-tertiary-fixed': '#151d1a',
+        'surface-dim': '#131315',
+        'primary-fixed': '#ffd7f4',
+        'primary-container': '#b388aa',
+        'tertiary-container': '#8e9892',
+        'surface-tint': '#e7b8dd',
+        primary: '#e7b8dd',
+        'surface-container-highest': '#353437',
+        error: '#ffb4ab',
+        'surface-variant': '#353437',
+        'on-tertiary-container': '#27302c',
+        'on-background': '#e5e1e4',
+        'on-error-container': '#ffdad6',
+        'surface-container-low': '#1c1b1d',
+        'on-primary-container': '#43223f',
+        outline: '#998d95',
+        'on-secondary-fixed-variant': '#5d3676',
+        'surface-bright': '#39393b',
+        'tertiary-fixed-dim': '#bfc9c3',
+        secondary: '#e4b5ff',
+        'secondary-fixed-dim': '#e4b5ff'
+      },
+      borderRadius: {
+        DEFAULT: '0.25rem',
+        lg: '0.5rem',
+        xl: '0.75rem',
+        full: '9999px'
+      },
+      spacing: {
+        'gutter-mobile': '0.75rem',
+        'space-xl': '1.75rem',
+        'space-md': '0.75rem',
+        'space-lg': '1.25rem',
+        gutter: '1.25rem',
+        margin: '2rem',
+        'margin-mobile': '1rem',
+        'space-xs': '0.25rem',
+        'space-sm': '0.5rem'
+      },
+      fontFamily: {
+        'body-lg': ['Plus Jakarta Sans'],
+        'label-md': ['Plus Jakarta Sans'],
+        'title-md': ['Plus Jakarta Sans'],
+        'display-lg': ['Playfair Display'],
+        'display-lg-mobile': ['Playfair Display'],
+        'headline-lg': ['Playfair Display'],
+        'headline-md': ['Playfair Display'],
+        'label-sm': ['Plus Jakarta Sans'],
+        'body-md': ['Plus Jakarta Sans']
+      },
+      fontSize: {
+        'body-lg': ['15px', { lineHeight: '22px', fontWeight: '400' }],
+        'label-md': ['11px', { lineHeight: '14px', letterSpacing: '0.08em', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '0.01em', fontWeight: '600' }],
+        'display-lg': ['36px', { lineHeight: '42px', letterSpacing: '-0.02em', fontWeight: '400' }],
+        'display-lg-mobile': ['26px', { lineHeight: '32px', letterSpacing: '-0.01em', fontWeight: '400' }],
+        'headline-lg': ['22px', { lineHeight: '28px', fontWeight: '500' }],
+        'headline-md': ['18px', { lineHeight: '24px', fontWeight: '500' }],
+        'label-sm': ['9px', { lineHeight: '12px', letterSpacing: '0.12em', fontWeight: '600' }],
+        'body-md': ['12px', { lineHeight: '18px', fontWeight: '400' }]
+      }
+    }
+  },
+  plugins: []
+};

@@ -1,0 +1,3174 @@
+<!DOCTYPE html>
+<html class="dark h-full w-full" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Crystal - Experiencia Cinemática Horizontal de Cumpleaños &amp; Bóveda Astral</title>
+<meta content="Experiencia cinematográfica de cumpleaños para Crystal: una pantera entre tulipanes, su bóveda natal de Escorpio, memorias de 1997, sus canciones predilectas y un tributo a nuestra amistad." name="description"/>
+<meta content="#0a0a0c" name="theme-color"/>
+
+<!-- Arranque ultra-rápido: fondo oscuro y pantalla de carga sin dependencias externas -->
+<style>
+    html, body { margin: 0; background: #0a0a0c; }
+    #boot {
+      position: fixed; inset: 0; z-index: 300;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+      background: radial-gradient(ellipse 80% 70% at 50% 42%, #1d1426 0%, #0e0b12 55%, #0a0a0c 100%);
+      transition: opacity .8s ease, visibility 0s linear .8s;
+    }
+    #boot.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .boot-star { width: 56px; height: 56px; animation: bootSpin 8s linear infinite; filter: drop-shadow(0 0 16px rgba(212,163,89,.6)); }
+    .boot-star path { transform-origin: 50% 50%; animation: bootPulse 2s ease-in-out infinite; }
+    .boot-bar { position: relative; width: 130px; height: 2px; border-radius: 2px; background: rgba(179,136,170,.2); overflow: hidden; }
+    .boot-bar > i { position: absolute; inset: 0 auto 0 0; width: 100%; border-radius: 2px; background: linear-gradient(90deg,#b388aa,#d4a359); box-shadow: 0 0 10px rgba(212,163,89,.6); animation: bootLoad 1.2s ease-in-out infinite alternate; }
+    @keyframes bootSpin { to { transform: rotate(360deg); } }
+    @keyframes bootPulse { 0%,100% { opacity: .6; transform: scale(.88); } 50% { opacity: 1; transform: scale(1.12); } }
+    @keyframes bootLoad { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+</style>
+
+<!-- Preload de fuentes locales prioritarias -->
+<link as="font" crossorigin="" href="assets/fonts/material-symbols.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="assets/fonts/playfairdisplay-normal-400900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="assets/fonts/plusjakartasans-normal-300700.woff2" rel="preload" type="font/woff2"/>
+<link href="assets/fonts/fonts.css" rel="stylesheet"/>
+
+<!-- Tailwind CSS compilado localmente (sin latencia de CDN) -->
+<link href="assets/tailwind.css" rel="stylesheet"/>
+
+<!-- GSAP 3.12.5 local -->
+<script src="assets/vendor/gsap.min.js"></script>
+
+<style>
+    /* Enfoque optimizado al rostro de la pantera */
+    #panther-hero-img {
+      transform-origin: 51% 17%;
+      transition: transform 0.12s cubic-bezier(0.25, 1, 0.5, 1), filter 0.18s ease;
+      will-change: transform, filter;
+    }
+    
+    @keyframes floatingPetals {
+      0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+      15% { opacity: 0.85; }
+      85% { opacity: 0.7; }
+      100% { transform: translateY(-115vh) rotate(360deg) translateX(35px); opacity: 0; }
+    }
+
+    @keyframes pulseAntares {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px #ff2a4b) drop-shadow(0 0 24px rgba(255, 42, 75, 0.85)); }
+      50% { transform: scale(1.4); filter: drop-shadow(0 0 18px #ff4d66) drop-shadow(0 0 45px rgba(255, 77, 102, 1)); }
+    }
+
+    @keyframes waveBar {
+      0%, 100% { height: 4px; }
+      50% { height: 18px; }
+    }
+
+    @keyframes rotateVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rotatePhonePrompt {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(90deg); }
+    }
+
+    .animate-phone-turn {
+      animation: rotatePhonePrompt 2.6s ease-in-out infinite;
+    }
+
+    .spin-vinyl {
+      animation: rotateVinyl 4s linear infinite;
+    }
+
+    .antares-pulse {
+      animation: pulseAntares 2.4s ease-in-out infinite;
+    }
+
+    .nebula-glow {
+      background: radial-gradient(circle at 50% 35%, rgba(135, 70, 160, 0.45) 0%, rgba(69, 30, 93, 0.35) 45%, rgba(14, 14, 16, 0.98) 85%);
+    }
+
+    .golden-button-glow {
+      box-shadow: 0 0 22px rgba(212, 163, 89, 0.4), 0 0 45px rgba(179, 136, 170, 0.28);
+    }
+
+    .vignette-panther {
+      background: radial-gradient(circle at 51% 17%, rgba(0,0,0,0) 25%, rgba(14,14,16,0.48) 65%, rgba(14,14,16,0.96) 100%);
+    }
+
+    .soundwave-bar {
+      animation: waveBar 1.2s ease-in-out infinite;
+    }
+
+    /* ====== FLUIDEZ & OPTIMIZACIÓN ====== */
+    .act-section { transition: opacity .7s ease, visibility 0s linear 0s; }
+    .act-section.opacity-0 { visibility: hidden; transition: opacity .7s ease, visibility 0s linear .7s; }
+    body.is-booting #welcome-screen { opacity: 0; }
+    @keyframes welcomeIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+    body:not(.is-booting) #welcome-card { animation: welcomeIn .8s cubic-bezier(.2,.8,.2,1) both; }
+
+    /* ====== CONFIGURACIÓN FLICK CARDS 3D ====== */
+    :root {
+      --fc-stage-bg: #050505;
+      --fc-text-white: #ffffff;
+      --fc-text-muted: rgba(229, 225, 228, 0.7);
+      --fc-gold: #d4a359;
+      --fc-purple-glow: rgba(135, 70, 160, 0.35);
+      --fc-ambient-blur: 90px;
+      --fc-ambient-opacity: 0.16;
+      --fc-perspective: 1400px;
+      --fc-card-width: clamp(150px, min(30vw, 50vh), 380px);
+      --fc-card-aspect-ratio: 3 / 4.1;
+      --fc-card-radius: 14px;
+      --fc-font-ui: 'Space Grotesk', -apple-system, sans-serif;
+      --fc-font-btn: 'Space Mono', monospace;
+      --fc-title-size-ratio: 0.13;
+      --fc-title-weight: 500;
+      --fc-btn-bg: rgba(14, 14, 16, 0.88);
+      --fc-btn-border: rgba(255, 255, 255, 0.18);
+      --fc-btn-color: #ffffff;
+      --fc-btn-hover-border: #d4a359;
+      --fc-shade-base: 0.18;
+      --fc-shade-step: 0.20;
+      --fc-shade-max: 0.80;
+      --fc-card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+      --fc-autoplay-interval: 3200ms;
+    }
+
+    .fc-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: var(--fc-stage-bg);
+      perspective: var(--fc-perspective);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: var(--fc-font-ui);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .fc-ambient-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .fc-ambient-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 140%;
+      height: 140%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      filter: blur(var(--fc-ambient-blur));
+      opacity: var(--fc-ambient-opacity);
+      pointer-events: none;
+      will-change: opacity;
+    }
+
+    .fc-deck {
+      position: relative;
+      width: var(--fc-card-width);
+      aspect-ratio: var(--fc-card-aspect-ratio);
+      transform-style: preserve-3d;
+      z-index: 10;
+      touch-action: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fc-card {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--fc-card-radius);
+      overflow: hidden;
+      box-shadow: var(--fc-card-shadow);
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+      cursor: grab;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #121214;
+    }
+    .fc-card.is-dragging { cursor: grabbing; }
+
+    .fc-card-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    .fc-card-shade {
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      will-change: opacity;
+    }
+
+    .fc-card-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(14px, 4vw, 24px);
+      text-align: center;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .fc-card-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+    }
+
+    .fc-card-title {
+      color: var(--fc-text-white);
+      font-family: var(--fc-font-ui);
+      font-weight: var(--fc-title-weight);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
+      margin: auto 0;
+      max-width: 92%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .fc-cta-btn {
+      font-family: var(--fc-font-btn);
+      font-size: clamp(10px, 2.4vmin, 12px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--fc-btn-color);
+      background: var(--fc-btn-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--fc-btn-border);
+      border-radius: 9999px;
+      padding: 8px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      pointer-events: auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      transition: all 0.25s ease;
+      margin-bottom: 8px;
+      opacity: 0;
+    }
+    .fc-cta-btn:hover {
+      border-color: var(--fc-btn-hover-border);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(212, 163, 89, 0.25);
+    }
+    .fc-cta-btn:active { transform: scale(0.96); }
+
+    .fc-arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(38px, 4.5vw, 48px);
+      height: clamp(38px, 4.5vw, 48px);
+      border-radius: 50%;
+      background: rgba(18, 18, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      z-index: 30;
+      transition: all 0.25s ease;
+    }
+    .fc-arrow-btn:hover {
+      background: rgba(40, 30, 48, 0.95);
+      border-color: #d4a359;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 20px rgba(212, 163, 89, 0.35);
+    }
+    .fc-arrow-btn:active { transform: translateY(-50%) scale(0.92); }
+    .fc-arrow-btn.is-prev { left: clamp(10px, 2.5vw, 28px); }
+    .fc-arrow-btn.is-next { right: clamp(10px, 2.5vw, 28px); }
+
+    .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: rgba(19, 19, 21, 0.5); }
+    .custom-scroll::-webkit-scrollbar-thumb { background: rgba(179, 136, 170, 0.6); border-radius: 9999px; }
+
+    /* ====== ACTO 1 · REVERIE ====== */
+    #reverie-canvas { display: block; width: 100%; height: 100%; }
+    .reverie-vignette { background: radial-gradient(120% 95% at 50% 50%, rgba(10,10,12,0) 58%, rgba(10,10,12,0.5) 100%); }
+
+    .reverie-caption {
+      position: absolute;
+      left: calc(1rem + env(safe-area-inset-left));
+      bottom: calc(4.5rem + env(safe-area-inset-bottom));
+      max-width: min(400px, 50vw);
+      padding: 0.7rem 1rem 0.8rem 1.15rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(30,25,36,0.78), rgba(20,18,24,0.5));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(226,154,185,0.2);
+      box-shadow: 0 12px 36px -6px rgba(10,10,12,0.7), 0 0 20px 0 rgba(123,82,148,0.15);
+      opacity: 0;
+      transform: translateY(12px);
+      filter: blur(6px);
+      transition: opacity 1.1s ease, transform 1.4s cubic-bezier(.2,.8,.2,1), filter 1.1s ease;
+      pointer-events: none;
+      text-align: left;
+    }
+    .reverie-caption::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 18%; bottom: 18%;
+      width: 2px;
+      border-radius: 2px;
+      background: linear-gradient(to bottom, transparent, #d4a359, #b388aa, transparent);
+    }
+    .reverie-caption.is-on { opacity: 1; transform: none; filter: none; }
+    .reverie-caption .cap-kicker {
+      display: flex; align-items: center; gap: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+      color: #d4a359; margin-bottom: 4px;
+    }
+    .reverie-caption .cap-icon { font-size: 13px; }
+    .reverie-caption .cap-text {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 15px; line-height: 21px; color: #f4effa;
+    }
+    .reverie-caption.is-hero { max-width: min(470px, 60vw); }
+    .reverie-caption.is-hero .cap-text { font-size: 18px; line-height: 25px; }
+
+    .reverie-finale {
+      opacity: 0;
+      transform: translateY(14px) scale(.98);
+      filter: blur(8px);
+      transition: opacity 1.4s ease, transform 1.8s cubic-bezier(.2,.8,.2,1), filter 1.4s ease;
+      pointer-events: none;
+    }
+    .reverie-finale::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 55% 50% at 50% 46%, rgba(10,10,12,0.62), rgba(10,10,12,0) 70%);
+      z-index: -1;
+    }
+    .reverie-finale.is-on { opacity: 1; transform: none; filter: none; }
+    .reverie-finale.is-on .finale-actions { pointer-events: auto; }
+
+    .reverie-hud {
+      position: absolute;
+      right: calc(1rem + env(safe-area-inset-right));
+      bottom: calc(4.5rem + env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: 8px;
+      padding: 5px 11px;
+      border-radius: 9999px;
+      background: rgba(20,18,24,0.62);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(179,136,170,0.16);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #d1c3cb;
+      font-variant-numeric: tabular-nums;
+      transition: opacity .9s ease;
+    }
+    .reverie-hud.is-hidden { opacity: 0; }
+    .reverie-hud .material-symbols-outlined { font-size: 14px; color: #b388aa; }
+    .reverie-hud .hud-sep { width: 1px; height: 10px; background: rgba(179,136,170,0.28); }
+    .reverie-hud .hud-track {
+      position: relative; width: 46px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, rgba(212,163,89,0.55), rgba(123,82,148,0.55));
+    }
+    #hud-focus-dot {
+      position: absolute; top: 50%; left: 50%;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #f4effa;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px rgba(226,154,185,0.85);
+    }
+    #hud-focus-label { min-width: 72px; }
+    @media (max-width: 560px) { .reverie-hud { display: none; } }
+
+    .wp-node {
+      position: absolute; top: 50%;
+      width: 8px; height: 8px; padding: 0;
+      border-radius: 50%;
+      background: #0a0a0c;
+      border: 1px solid rgba(179,136,170,0.7);
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: background .4s ease, box-shadow .4s ease, border-color .4s ease;
+    }
+    .wp-node.is-passed { background: #b388aa; }
+    .wp-node.is-active {
+      background: #0a0a0c;
+      border-color: #e7b8dd;
+      box-shadow: 0 0 0 2px rgba(179,136,170,0.25), 0 0 10px rgba(179,136,170,0.6);
+    }
+    .wp-node.is-active::before,
+    .wp-node.is-active::after {
+      content: '';
+      position: absolute; inset: -5px;
+      border-radius: 50%;
+      border: 1px solid rgba(179,136,170,0.6);
+      animation: wpPulse 2.2s ease-out infinite;
+    }
+    .wp-node.is-active::after { animation-delay: 1.1s; }
+    @keyframes wpPulse {
+      from { transform: scale(.55); opacity: 1; }
+      to { transform: scale(1.7); opacity: 0; }
+    }
+
+    /* ====== ACTO 2 · BÓVEDA NATAL ====== */
+    .astral-item { opacity: 0; }
+    .astral-card { will-change: transform, opacity; }
+    #astral-svg { filter: drop-shadow(0 0 18px rgba(212,163,89,.22)); will-change: opacity, transform; }
+    #astral-svg .c-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    #astral-svg .c-star { filter: drop-shadow(0 0 5px rgba(255,215,244,.9)); }
+    #astral-svg .c-label {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      letter-spacing: .34em; text-transform: uppercase; fill: #ecd6f2; opacity: 0;
+    }
+    @media (max-height: 480px) { .astral-short-hide { display: none; } }
+
+    /* ====== ACTO 3 · HITOS + LÍNEA DE TIEMPO INTERACTIVA ====== */
+    .act3-grid { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+    @media (min-width: 640px) { .act3-grid { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); align-items: center; gap: 1.1rem; } }
+    @media (max-height: 480px) { .act3-sub, .act3-kicker { display: none; } }
+
+    .souls-wrap {
+      position: relative; overflow: hidden; touch-action: pan-y; cursor: grab; padding: 20px 0 6px;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+    }
+    .souls-wrap.is-dragging { cursor: grabbing; }
+    .souls-track { position: relative; display: flex; width: max-content; will-change: transform; }
+    .souls-line, .souls-fill { position: absolute; top: 45px; height: 2px; border-radius: 2px; }
+    .souls-line { background: rgba(179,136,170,.24); }
+    .souls-fill { width: 0; background: linear-gradient(90deg, #b388aa, #d4a359); box-shadow: 0 0 10px rgba(212,163,89,.55); }
+    .soul-node {
+      position: relative; flex: 0 0 104px; display: flex; flex-direction: column; align-items: center; gap: 7px;
+      padding: 0; background: none; border: 0; cursor: pointer; color: inherit; -webkit-tap-highlight-color: transparent;
+    }
+    .soul-avatar {
+      width: 48px; height: 48px; border-radius: 50%; overflow: hidden; background: #141218;
+      border: 2px solid rgba(179,136,170,.45); box-shadow: 0 0 0 4px #0f0c14;
+      filter: grayscale(.65) brightness(.82);
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease, filter .35s ease;
+    }
+    .soul-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
+    .soul-node.is-passed .soul-avatar { filter: grayscale(.2) brightness(.92); border-color: rgba(212,163,89,.55); }
+    .soul-node.is-active .soul-avatar {
+      transform: scale(1.28); filter: none; border-color: #d4a359;
+      box-shadow: 0 0 0 4px #0f0c14, 0 0 24px rgba(212,163,89,.6);
+    }
+    .soul-year { font: 700 10px/1 'Plus Jakarta Sans', sans-serif; letter-spacing: .14em; color: #9d93a8; transition: color .35s ease, transform .35s ease; }
+    .soul-node.is-active .soul-year { color: #d4a359; transform: translateY(4px); }
+    .soul-arrow {
+      position: absolute; top: 45px; transform: translateY(-50%); z-index: 5;
+      width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      background: rgba(18,18,22,.88); border: 1px solid rgba(255,255,255,.16); color: #fff; cursor: pointer;
+      transition: border-color .25s ease, transform .25s ease;
+    }
+    .soul-arrow:hover { border-color: #d4a359; transform: translateY(-50%) scale(1.1); }
+    .soul-arrow .material-symbols-outlined { font-size: 18px; }
+    .soul-arrow.is-prev { left: 0; } .soul-arrow.is-next { right: 0; }
+    .soul-detail {
+      display: flex; gap: .8rem; align-items: center; padding: .65rem .85rem; border-radius: 1rem; min-height: 90px; touch-action: pan-y;
+      background: linear-gradient(135deg, rgba(30,25,36,.84), rgba(20,18,24,.62));
+      border: 1px solid rgba(212,163,89,.32); box-shadow: 0 12px 30px -8px rgba(10,10,12,.7);
+      -webkit-user-select: none; user-select: none;
+    }
+    .soul-photo { width: 72px; height: 72px; border-radius: .85rem; object-fit: cover; flex: none; border: 1px solid rgba(212,163,89,.45); }
+
+    /* ====== ACTO 5 · FINAL: CISNES Y AMISTAD ====== */
+    .swans-img {
+      position: absolute; inset: -4%; width: 108%; height: 108%;
+      object-fit: cover; object-position: 50% 55%;
+    }
+    @keyframes swanDrift {
+      from { transform: scale(1.02) translate3d(-1%, .5%, 0); }
+      to { transform: scale(1.08) translate3d(1%, -.6%, 0); }
+    }
+    .swans-drift { animation: swanDrift 28s ease-in-out infinite alternate; will-change: transform; }
+    .act-section.opacity-0 .swans-drift { animation-play-state: paused; }
+    .final-card {
+      padding: .85rem .95rem; border-radius: 1.1rem; text-align: left;
+      background: linear-gradient(160deg, rgba(30,25,36,.8), rgba(18,16,22,.6));
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(226,154,185,.24);
+      box-shadow: 0 14px 34px -8px rgba(10,10,12,.7), 0 0 22px rgba(123,82,148,.14);
+    }
+    @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.24); } }
+    .heart-pulse { display: inline-block; animation: heartPulse 1.7s ease-in-out infinite; }
+
+    /* Aviso de rotación en móviles portrait */
+    #rotate-overlay { display: none; }
+    @media (orientation: portrait) and (max-width: 900px) {
+      body.is-started #rotate-overlay { display: flex; }
+    }
+</style>
+</head>
+<body class="is-booting bg-background text-on-surface h-full w-full overflow-hidden select-none touch-manipulation font-body-md">
+
+<!-- 0. PANTALLA DE CARGA INICIAL ULTRA RÁPIDA (Sin FOUC ni texto desordenado) -->
+<div aria-hidden="true" id="boot">
+  <svg class="boot-star" viewBox="0 0 64 64"><path d="M32 2 C34 20 44 30 62 32 C44 34 34 44 32 62 C30 44 20 34 2 32 C20 30 30 20 32 2Z" fill="#e7b8dd"></path></svg>
+  <div class="boot-bar"><i></i></div>
+</div>
+
+<!-- ========================================== -->
+<!-- 1. PANTALLA PREVIA DE INICIO / ORIENTACIÓN HORIZONTAL -->
+<!-- ========================================== -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-[#0e0e10]/95 backdrop-blur-2xl transition-all duration-700 p-4 md:p-6" id="welcome-screen">
+  <div class="relative w-full max-w-xl mx-auto flex flex-col items-center text-center p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-surface-container-high/90 via-surface-container/90 to-surface-container-lowest/90 border border-outline-variant/40 shadow-2xl overflow-hidden" id="welcome-card">
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-72 h-72 bg-[#d6a7f0]/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d4a359]/15 border border-[#d4a359]/40 text-[#d4a359] text-[11px] font-semibold uppercase tracking-[0.2em] mb-3">
+      <span class="material-symbols-outlined text-[15px]">auto_awesome</span>
+      <span>Experiencia Cinemática Exclusiva</span>
+    </div>
+    <h1 class="text-display-lg-mobile sm:text-headline-lg font-headline-lg text-primary-fixed mb-2 drop-shadow-md">
+      ¡Feliz Cumpleaños, Crystal!
+    </h1>
+    <p class="text-body-md sm:text-body-lg text-on-surface-variant max-w-md mx-auto mb-5 leading-snug">
+      Preparamos una celebración inmersiva con la majestuosidad de la pantera, tu bóveda celeste de Escorpio de 1997, tus canciones predilectas y un mensaje especial sobre nuestra amistad.
+    </p>
+    <div class="flex items-center justify-center gap-4 py-3 px-6 rounded-2xl bg-surface-container-lowest/80 border border-outline-variant/30 mb-6 shadow-inner w-full max-w-sm">
+      <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary flex-shrink-0">
+        <span class="material-symbols-outlined text-[26px] animate-phone-turn">screen_rotation</span>
+      </div>
+      <div class="text-left">
+        <p class="text-[13px] font-bold text-primary-fixed tracking-wide uppercase">Gira tu teléfono en horizontal</p>
+        <p class="text-[11px] text-on-surface-variant leading-tight">Para una experiencia cinematográfica completa</p>
+      </div>
+    </div>
+    <button class="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#5f3878] via-[#8746a0] to-[#b388aa] text-white font-title-md text-title-md golden-button-glow hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl cursor-pointer w-full max-w-xs" id="btn-start-experience">
+      <span class="material-symbols-outlined text-[#ffd7f4] text-[22px] group-hover:scale-110 transition-transform">play_circle</span>
+      <span class="tracking-wider uppercase font-semibold text-[13px]">TOCA PARA COMENZAR</span>
+      <div class="absolute -inset-1 rounded-full bg-primary/30 blur-md -z-10 group-hover:bg-primary/50 transition-all"></div>
+    </button>
+    <span class="text-[10px] text-on-surface-variant/70 tracking-widest uppercase mt-3">Audio estéreo inmersivo &amp; Video 4K Macro</span>
+  </div>
+</div>
+
+<!-- Aviso: girar a horizontal si el móvil vuelve a portrait -->
+<div class="fixed inset-0 z-[60] items-center justify-center flex-col gap-3 bg-[#0a0a0c]/95 backdrop-blur-xl text-center px-8" id="rotate-overlay">
+  <div class="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+    <span class="material-symbols-outlined text-[36px] animate-phone-turn">screen_rotation</span>
+  </div>
+  <p class="font-headline-md text-headline-md text-primary-fixed">Gira tu teléfono</p>
+  <p class="text-body-md text-on-surface-variant max-w-xs">El recorrido de Crystal está compuesto para verse en horizontal.</p>
+</div>
+
+<!-- ========================================== -->
+<!-- CONTENEDOR PRINCIPAL CINEMÁTICO LANDSCAPE -->
+<!-- ========================================== -->
+<main class="relative w-full h-full overflow-hidden bg-surface-container-lowest flex flex-col justify-between">
+  <!-- HEADER DE NAVEGACIÓN ENTRE LOS 5 ACTOS -->
+  <header class="fixed top-2 inset-x-0 z-30 pointer-events-none px-4 sm:px-6 flex items-center justify-between">
+    <div class="flex items-center gap-2 pointer-events-auto bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1 rounded-full border border-outline-variant/30 shadow-md">
+      <span class="material-symbols-outlined text-[#d4a359] text-[15px]">diamond</span>
+      <span class="text-[11px] tracking-widest uppercase font-semibold text-primary-fixed">Tulip Reverie • Crystal</span>
+    </div>
+    <div class="flex items-center gap-1.5 pointer-events-auto bg-surface-container-high/85 backdrop-blur-md p-1 rounded-full border border-outline-variant/40 shadow-lg">
+      <button class="act-nav-pill px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all text-primary-fixed bg-primary/20 border border-primary/50" data-target-act="1" id="act-btn-1">
+        <span class="hidden sm:inline">1. </span>Pantera
+      </button>
+      <button class="act-nav-pill px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all text-on-surface-variant hover:text-white border border-transparent" data-target-act="2" id="act-btn-2">
+        <span class="hidden sm:inline">2. </span>Destino Astral
+      </button>
+      <button class="act-nav-pill px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all text-on-surface-variant hover:text-white border border-transparent" data-target-act="3" id="act-btn-3">
+        <span class="hidden sm:inline">3. </span>Memorias 1997
+      </button>
+      <button class="act-nav-pill px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all text-on-surface-variant hover:text-white border border-transparent" data-target-act="4" id="act-btn-4">
+        <span class="material-symbols-outlined text-[12px] inline -mt-0.5 text-[#d4a359]">music_note</span>
+        <span class="hidden sm:inline">4. </span>Canciones
+      </button>
+      <button class="act-nav-pill px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all text-on-surface-variant hover:text-white border border-transparent" data-target-act="5" id="act-btn-5">
+        <span class="material-symbols-outlined text-[12px] inline -mt-0.5 text-[#ff7aa2]">favorite</span>
+        <span class="hidden sm:inline">5. </span>Amistad
+      </button>
+      <button class="p-1 rounded-full text-on-surface hover:text-primary transition-all ml-1" id="toggle-audio-top-btn" title="Sonido Ambiental">
+        <span class="material-symbols-outlined text-primary text-[15px]" id="audio-icon-status">volume_up</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- ACTO 1: REVERIE · PANTERA DIMENSIONAL (WebGL) -->
+  <!-- ========================================== -->
+  <section class="act-section absolute inset-0 w-full h-full z-10 transition-opacity duration-1000 opacity-100" id="act-1">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none bg-[#0a0a0c]" id="reverie-stage">
+      <canvas aria-label="Recorrido cinematográfico por la pintura de la pantera negra entre tulipanes rosas" id="reverie-canvas" role="img"></canvas>
+      <img alt="Majestic black panther resting in an infinite twilight meadow of blooming pink and violet tulips" class="hidden absolute inset-0 w-full h-full object-cover object-center" id="panther-hero-img" src="assets/pantera_hd.jpg"/>
+      <div class="absolute inset-0 reverie-vignette"></div>
+      <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a0a0c]/80 to-transparent"></div>
+      <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#0a0a0c]/50 to-transparent"></div>
+    </div>
+    <div class="absolute inset-0 pointer-events-none overflow-hidden z-10" id="petals-canvas-container"></div>
+    <div class="absolute inset-0 z-20 pointer-events-none">
+      <div class="reverie-caption is-hero" id="cap-0">
+        <span class="cap-kicker"><span class="material-symbols-outlined cap-icon">celebration</span>Para Crystal con todo el cariño</span>
+        <p class="cap-text">"Mi querida Crystal, que este día sea de mucha alegría para ti y para los que te quieren."</p>
+      </div>
+      <div class="reverie-caption" id="cap-1">
+        <span class="cap-kicker">I · Umbral de Tulipanes</span>
+        <p class="cap-text">Pétalos de seda custodian el sendero: cada uno guarda un deseo para ti.</p>
+      </div>
+      <div class="reverie-caption" id="cap-2">
+        <span class="cap-kicker">II · Seda y Satén</span>
+        <p class="cap-text">Lazos de satén atan los recuerdos más bonitos de tu historia.</p>
+      </div>
+      <div class="reverie-caption" id="cap-3">
+        <span class="cap-kicker">III · Terciopelo Nocturno</span>
+        <p class="cap-text">Calma soberana: una fuerza que protege y una ternura que no necesita palabras.</p>
+      </div>
+      <div class="reverie-caption" id="cap-4">
+        <span class="cap-kicker">IV · La Mirada</span>
+        <p class="cap-text">"En la serenidad y firmeza de su mirada habita tu luz: <span class="text-secondary-fixed not-italic font-semibold">intuición indomable</span>, nobleza y una fuerza protectora inquebrantable."</p>
+      </div>
+      <div class="reverie-caption" id="cap-5">
+        <span class="cap-kicker">V · Horizonte Lila</span>
+        <p class="cap-text">Más allá del prado, el cielo de noviembre se tiñe de lila solo para ti.</p>
+      </div>
+      <div class="reverie-caption" id="cap-6">
+        <span class="cap-kicker">VI · El Reflejo</span>
+        <p class="cap-text">Y en sus ojos, todo el edén vuelve a empezar.</p>
+      </div>
+      <div aria-hidden="true" class="reverie-hud" id="reverie-hud">
+        <span class="material-symbols-outlined">center_focus_weak</span>
+        <span id="hud-zoom">×1.0</span>
+        <span class="hud-sep"></span>
+        <span id="hud-fstop">f/7.0</span>
+        <span class="hud-sep"></span>
+        <div class="hud-track"><div id="hud-focus-dot"></div></div>
+        <span id="hud-focus-label">Pantera</span>
+      </div>
+      <div class="reverie-finale absolute inset-0 flex flex-col items-center justify-center text-center px-6 pb-12" id="sub-1-3">
+        <span class="text-[10px] font-bold tracking-[0.25em] text-[#d4a359] uppercase block mb-1 drop-shadow">Celebración Especial</span>
+        <h2 class="text-display-lg-mobile sm:text-display-lg font-display-lg text-primary-fixed drop-shadow-[0_6px_28px_rgba(179,136,170,0.7)] font-normal tracking-tight">
+          ¡Feliz Cumpleaños, Crystal!
+        </h2>
+        <p class="text-body-md text-on-surface-variant max-w-md mx-auto mt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+          Que florezca siempre en ti la paz, la dicha y la majestuosidad de este edén violeta.
+        </p>
+        <div class="finale-actions mt-4 flex flex-wrap items-center justify-center gap-2">
+          <button class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#1e1924]/60 border border-[#b388aa]/30 hover:border-[#e29ab9]/70 text-[#f4effa] text-[12px] font-semibold backdrop-blur-xl transition-all duration-300 active:scale-95 cursor-pointer" id="btn-replay-reverie">
+            <span class="material-symbols-outlined text-primary text-[17px]">replay</span>
+            <span>Ver de nuevo</span>
+          </button>
+          <button class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#201726]/95 via-[#4a2455]/95 to-[#201726]/95 border border-[#d4a359]/70 hover:border-[#d4a359] text-[#f4effa] text-[13px] font-semibold golden-button-glow backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-xl" id="btn-finale-astral" onclick="jumpToAct(2)">
+            <span class="material-symbols-outlined text-[#d4a359] text-[18px]">auto_awesome</span>
+            <span>Descubrir Destino Astral de Escorpio</span>
+            <span class="material-symbols-outlined text-primary text-[18px]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- ACTO 2: BÓVEDA NATAL (Primero constelación animada, luego tarjetas centradas) -->
+  <!-- ========================================== -->
+  <section class="act-section absolute inset-0 w-full h-full z-10 transition-opacity duration-1000 opacity-0 pointer-events-none overflow-hidden" id="act-2">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none nebula-glow">
+      <canvas class="absolute inset-0 w-full h-full" id="stars-canvas"></canvas>
+      <div class="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-secondary-container via-surface-container-lowest to-surface-container-lowest mix-blend-screen"></div>
+    </div>
+    
+    <!-- Constelación Escorpio centrada -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none" id="astral-constellation">
+      <svg aria-label="Constelación de Escorpio con la estrella roja Antares" class="h-[80vh] max-h-[600px] w-auto overflow-visible" fill="none" id="astral-svg" preserveAspectRatio="xMidYMid meet" role="img" viewBox="90 105 290 435">
+        <g stroke="#d4a359" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+          <path class="c-line" d="M 170,140 L 230,190 L 290,240" data-d="1.3" data-s="0.35" pathLength="1"></path>
+          <path class="c-line" d="M 230,190 L 190,210 L 150,200" data-d="0.7" data-s="1.0" pathLength="1"></path>
+          <path class="c-line" d="M 290,240 L 310,290" data-d="0.45" data-s="1.65" pathLength="1"></path>
+          <path class="c-line" d="M 310,290 L 320,360 L 305,420 L 270,470 L 220,490 L 180,470 L 170,425 L 195,400" data-d="2.0" data-s="2.1" pathLength="1"></path>
+        </g>
+        <circle class="c-star" cx="170" cy="140" data-t="0.35" fill="#f4d9ff" r="4"></circle>
+        <circle class="c-star" cx="230" cy="190" data-t="1.0" fill="#ffd7f4" r="4.2"></circle>
+        <circle class="c-star" cx="290" cy="240" data-t="1.65" fill="#ffd7f4" r="5"></circle>
+        <circle class="c-star" cx="190" cy="210" data-t="1.36" fill="#f4d9ff" r="3"></circle>
+        <circle class="c-star" cx="150" cy="200" data-t="1.7" fill="#f4d9ff" r="3.2"></circle>
+        <circle class="c-star" cx="320" cy="360" data-t="2.48" fill="#ffd7f4" r="3.8"></circle>
+        <circle class="c-star" cx="305" cy="420" data-t="2.81" fill="#ffd7f4" r="3.8"></circle>
+        <circle class="c-star" cx="270" cy="470" data-t="3.13" fill="#ffd7f4" r="4.2"></circle>
+        <circle class="c-star" cx="220" cy="490" data-t="3.42" fill="#f4d9ff" r="4.8"></circle>
+        <circle class="c-star" cx="180" cy="470" data-t="3.66" fill="#f4d9ff" r="3.8"></circle>
+        <circle class="c-star" cx="170" cy="425" data-t="3.91" fill="#ffd7f4" r="4.2"></circle>
+        <circle class="c-star" cx="195" cy="400" data-t="4.1" fill="#ffd7f4" r="5.8"></circle>
+        <g id="antares-wrap">
+          <g class="antares-pulse origin-[310px_290px]">
+            <circle cx="310" cy="290" fill="rgba(255, 42, 75, 0.25)" r="16"></circle>
+            <circle cx="310" cy="290" fill="rgba(255, 77, 102, 0.55)" r="9"></circle>
+            <circle cx="310" cy="290" fill="#ff2244" r="5.5"></circle>
+            <circle cx="310" cy="290" fill="#ffffff" r="2.8"></circle>
+          </g>
+        </g>
+        <circle cx="310" cy="290" fill="none" id="antares-ring" r="10" stroke="#ff4d66" stroke-width="1.4"></circle>
+        <text class="c-label" font-size="9" x="334" y="286">Antares</text>
+        <text class="c-label" font-size="11" text-anchor="middle" x="238" y="530">Escorpio</text>
+      </svg>
+    </div>
+
+    <!-- Contenido y tarjetas centradas -->
+    <div class="absolute inset-0 overflow-y-auto custom-scroll pt-12 pb-14 px-4 sm:px-8" id="astral-scroll">
+      <div class="relative z-20 min-h-full w-full max-w-4xl mx-auto flex flex-col items-center justify-center gap-3 sm:gap-4 py-2">
+        <div class="astral-item text-center" id="astral-head">
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#d4a359]/20 border border-[#d4a359]/40 text-[#ffd7f4] text-[10px] tracking-widest uppercase font-semibold mb-1.5">
+            <span class="material-symbols-outlined text-[#d4a359] text-[13px]">flare</span>
+            <span>Bóveda Natal: 2 de Noviembre de 1997 • ♏ Escorpio</span>
+          </div>
+          <h2 class="text-headline-md sm:text-headline-lg font-headline-lg text-primary-fixed drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
+            El Secreto de Escorpio: Pasión, Nobleza y Mirada Eterna
+          </h2>
+          <p class="astral-short-hide text-body-md text-[#ffd7f4]/90 italic max-w-2xl mx-auto mt-1">
+            "El 2 de Noviembre de 1997, el universo encendió una estrella irrepetible: Crystal."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left w-full" id="astral-cards">
+          <div class="astral-item astral-card p-3.5 rounded-2xl bg-surface-container-high/80 backdrop-blur-md border border-[#ff4d66]/40 hover:border-[#ff4d66] transition-colors shadow-lg">
+            <div class="flex items-center gap-2 text-primary-fixed mb-1.5">
+              <span class="material-symbols-outlined text-[20px] text-[#ff4d66]">favorite</span>
+              <h4 class="text-[12px] uppercase font-bold text-white">Corazón de Antares</h4>
+            </div>
+            <p class="text-[11px] text-on-surface-variant leading-relaxed">
+              Alfa Scorpii: la supergigante roja que rige tu fuerza espiritual, magnetismo genuino y pasión inquebrantable para proteger y cuidar con verdad a quienes amas.
+            </p>
+          </div>
+          <div class="astral-item astral-card p-3.5 rounded-2xl bg-surface-container-high/80 backdrop-blur-md border border-[#d4a359]/40 hover:border-[#d4a359] transition-colors shadow-lg">
+            <div class="flex items-center gap-2 text-[#d4a359] mb-1.5">
+              <span class="material-symbols-outlined text-[20px]">psychology</span>
+              <h4 class="text-[12px] uppercase font-bold text-[#ffd7f4]">Intuición Inquebrantable</h4>
+            </div>
+            <p class="text-[11px] text-on-surface-variant leading-relaxed">
+              El don escorpiano de sentir con profundidad absoluta, comprender con nobleza lo que no se dice y mantener una mirada digna frente a cada etapa del camino.
+            </p>
+          </div>
+          <div class="astral-item astral-card p-3.5 rounded-2xl bg-surface-container-high/80 backdrop-blur-md border border-secondary/40 hover:border-secondary transition-colors shadow-lg">
+            <div class="flex items-center gap-2 text-secondary mb-1.5">
+              <span class="material-symbols-outlined text-[20px]">pets</span>
+              <h4 class="text-[12px] uppercase font-bold text-secondary-fixed">El Reflejo Felino</h4>
+            </div>
+            <p class="text-[11px] text-on-surface-variant leading-relaxed">
+              Como la pantera entre tulipanes violetas: calma soberana, belleza misteriosa y un espíritu libre que cautiva de forma silenciosa e inolvidable.
+            </p>
+          </div>
+        </div>
+
+        <div class="astral-item flex flex-wrap items-center justify-center gap-2" id="astral-nav">
+          <button class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high/80 border border-outline-variant/40 text-[11px] font-semibold text-on-surface hover:text-white hover:border-primary transition-all cursor-pointer" onclick="jumpToAct(1)">
+            <span class="material-symbols-outlined text-[15px]">arrow_back</span>
+            <span>Volver a Pantera</span>
+          </button>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-high/90 border border-[#d4a359]/60 backdrop-blur-md shadow-xl cursor-pointer hover:scale-105 active:scale-95 transition-all golden-button-glow" id="act2-music-badge" onclick="togglePlayCurrentSong()" title="Pausar / Reanudar tema musical">
+            <span class="material-symbols-outlined text-[17px] text-[#d4a359] spin-vinyl" id="act2-music-icon">piano</span>
+            <span class="text-[11px] font-bold text-primary-fixed tracking-wide truncate max-w-[210px]" id="act2-music-title">♪ Mia &amp; Sebastian's Theme</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#d4a359] animate-pulse"></span>
+            <span class="material-symbols-outlined text-[18px] text-[#ffd7f4]" id="act2-music-state">pause</span>
+          </div>
+          <button class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-primary/30 to-secondary/30 border border-[#d4a359]/70 text-[11px] font-bold text-white hover:border-[#d4a359] transition-all cursor-pointer golden-button-glow" onclick="jumpToAct(3)">
+            <span>Ver Memorias de 1997</span>
+            <span class="material-symbols-outlined text-[15px] text-[#d4a359]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- ACTO 3: MEMORIAS DE 1997 (Hitos celestiales con imágenes + línea de tiempo de almas) -->
+  <!-- ========================================== -->
+  <section class="act-section absolute inset-0 w-full h-full z-10 transition-opacity duration-1000 opacity-0 pointer-events-none overflow-hidden" id="act-3">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none nebula-glow">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,_rgba(212,163,89,0.15)_0%,_transparent_60%)]"></div>
+    </div>
+    <div class="absolute inset-0 overflow-y-auto custom-scroll pt-12 pb-14 px-4 sm:px-8" id="act3-scroll">
+      <div class="relative z-20 min-h-full w-full max-w-5xl mx-auto flex flex-col items-center justify-center gap-2.5 py-2">
+        <div class="act3-in text-center">
+          <div class="act3-kicker inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#d4a359]/20 border border-[#d4a359]/40 text-[#d4a359] text-[10px] tracking-widest uppercase font-semibold mb-1">
+            <span class="material-symbols-outlined text-[#d4a359] text-[13px]">history_edu</span>
+            <span>El Año 1997 &amp; Personajes del 2 de Noviembre</span>
+          </div>
+          <h2 class="text-headline-md font-headline-lg text-primary-fixed">
+            Hitos Celestiales y Almas Ilustres
+          </h2>
+          <p class="act3-sub text-body-md text-on-surface-variant max-w-xl mx-auto">
+            Grandes acontecimientos cósmicos y talentos nacidos en este mismo día de celebración.
+          </p>
+        </div>
+
+        <div class="act3-grid w-full">
+          <!-- HITOS CELESTIALES CON IMÁGENES -->
+          <div class="act3-in flex flex-col gap-2.5 min-w-0">
+            <h4 class="text-[11px] uppercase tracking-widest text-[#d4a359] font-bold text-center">Hitos Celestiales de 1997</h4>
+            <div class="relative overflow-hidden rounded-2xl bg-surface-container-high/80 border border-[#d4a359]/40 p-2.5 flex gap-3 items-center shadow-lg group hover:border-[#d4a359] transition-colors">
+              <img alt="Pintura del cometa Hale-Bopp cruzando un cielo violeta sobre una colina" class="w-[68px] h-[68px] sm:w-20 sm:h-20 rounded-xl object-cover flex-shrink-0 border border-[#d4a359]/50 shadow-md" decoding="async" height="80" src="assets/scenes/comet.jpg" width="80"/>
+              <div class="min-w-0">
+                <div class="inline-block text-[9px] uppercase tracking-wider text-[#d4a359] font-bold">Fenómeno Astronómico 1997</div>
+                <h3 class="text-[13px] font-bold text-white">El Paso del Cometa Hale-Bopp</h3>
+                <p class="text-[11px] text-on-surface-variant leading-snug mt-0.5">
+                  Surcó el cielo nocturno como uno de los cometas más brillantes del siglo XX, con una estela radiante visible a simple vista durante 18 meses.
+                </p>
+              </div>
+            </div>
+            <div class="relative overflow-hidden rounded-2xl bg-surface-container-high/80 border border-primary/40 p-2.5 flex gap-3 items-center shadow-lg group hover:border-primary transition-colors">
+              <img alt="Pintura del telescopio espacial Hubble frente a una nebulosa rosada sobre la Tierra" class="w-[68px] h-[68px] sm:w-20 sm:h-20 rounded-xl object-cover flex-shrink-0 border border-primary/50 shadow-md" decoding="async" height="80" src="assets/scenes/hubble.jpg" width="80"/>
+              <div class="min-w-0">
+                <div class="inline-block text-[9px] uppercase tracking-wider text-primary font-bold">Exploración Espacial 1997</div>
+                <h3 class="text-[13px] font-bold text-white">Hubble y el Velo de las Nebulosas</h3>
+                <p class="text-[11px] text-on-surface-variant leading-snug mt-0.5">
+                  En 1997 el Hubble reveló imágenes nítidas de guarderías estelares y del nacimiento de estrellas en el espacio profundo.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- LÍNEA DE TIEMPO INTERACTIVA DE ALMAS -->
+          <div class="act3-in min-w-0" id="souls">
+            <h4 class="text-[11px] uppercase tracking-widest text-[#d4a359] font-bold text-center">Almas Célebres Nacidas el 2 de Noviembre</h4>
+            <div class="relative">
+              <button aria-label="Alma anterior" class="soul-arrow is-prev" id="souls-prev" type="button"><span class="material-symbols-outlined">chevron_left</span></button>
+              <div class="souls-wrap" id="souls-wrap"><div class="souls-track" id="souls-track"></div></div>
+              <button aria-label="Alma siguiente" class="soul-arrow is-next" id="souls-next" type="button"><span class="material-symbols-outlined">chevron_right</span></button>
+            </div>
+            <article aria-live="polite" class="soul-detail" id="soul-detail">
+              <img alt="" class="soul-photo" decoding="async" draggable="false" height="72" id="soul-img" src="assets/scenes/soul_marie.jpg" width="72"/>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-[9px] uppercase tracking-wider text-[#d4a359] font-bold" id="soul-year-chip">1755</span>
+                  <span class="material-symbols-outlined text-[14px] text-[#d4a359]" id="soul-icon">workspace_premium</span>
+                  <span class="text-[9px] uppercase tracking-wider text-on-surface-variant" id="soul-role">Reina de Francia</span>
+                </div>
+                <h5 class="text-[14px] font-bold text-primary-fixed leading-tight" id="soul-name">Marie Antoinette</h5>
+                <p class="text-[11px] text-on-surface-variant leading-snug mt-0.5" id="soul-desc">Elegancia eterna, porte aristocrático y una presencia que trasciende los siglos.</p>
+              </div>
+            </article>
+            <p class="text-[9px] text-center text-on-surface-variant/60 mt-1">Ilustraciones artísticas inspiradas en cada alma • Desliza o toca la línea del tiempo</p>
+          </div>
+        </div>
+
+        <div class="act3-in flex flex-wrap items-center justify-center gap-3">
+          <button class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-surface-container-high/80 border border-outline-variant/40 text-[11px] font-semibold text-on-surface hover:text-white transition-all cursor-pointer" onclick="jumpToAct(2)">
+            <span class="material-symbols-outlined text-[15px]">arrow_back</span>
+            <span>Bóveda Astral</span>
+          </button>
+          <button class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#8746a0] to-[#b388aa] border border-[#ffd7f4]/60 text-[11px] font-bold text-white hover:border-[#d4a359] transition-all cursor-pointer golden-button-glow" onclick="jumpToAct(4)">
+            <span class="material-symbols-outlined text-[15px] text-[#ffd7f4]">music_note</span>
+            <span>Canciones que te gustan</span>
+            <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- ACTO 4: CANCIONES QUE TE GUSTAN (COVERFLOW 3D FLICK CARDS) -->
+  <!-- ========================================== -->
+  <section class="act-section fc-stage absolute inset-0 w-full h-full z-10 transition-opacity duration-1000 opacity-0 pointer-events-none flex flex-col justify-between pt-11 pb-14 px-3 sm:px-6" id="act-4">
+    <!-- Ambient Glow Crossfading Behind Deck -->
+    <div class="fc-ambient-container" id="fc-ambient-container">
+      <img id="fc-ambient-0" class="fc-ambient-glow" src="assets/track0.jpg" alt="" />
+      <img id="fc-ambient-1" class="fc-ambient-glow" style="opacity: 0;" src="assets/track0.jpg" alt="" />
+    </div>
+
+    <!-- Header de Acto 4: Canciones que te gustan -->
+    <div class="relative z-20 text-center max-w-xl mx-auto flex-shrink-0 pointer-events-none">
+      <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#d4a359]/20 border border-[#d4a359]/40 text-[#ffd7f4] text-[10px] tracking-widest uppercase font-semibold mb-0.5">
+        <span class="material-symbols-outlined text-[#d4a359] text-[13px]">library_music</span>
+        <span>Canciones que te gustan • Crystal</span>
+      </div>
+      <h2 class="text-headline-md font-headline-lg text-primary-fixed">
+        Canciones que te gustan
+      </h2>
+      <p class="text-[10px] text-on-surface-variant leading-tight">
+        Arrastra la tarjeta frontal o usa las flechas • Reproducción continua y sonido inmersivo
+      </p>
+    </div>
+
+    <!-- FLICK CARDS: 3D FANNED DECK Y BOTONES REDONDOS -->
+    <div class="relative z-20 flex-1 w-full flex items-center justify-center my-auto overflow-visible select-none">
+      <button class="fc-arrow-btn is-prev" id="fc-btn-prev" aria-label="Pista anterior" title="Pista anterior (o Flecha Izquierda)">
+        <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+      </button>
+
+      <div class="fc-deck" id="fc-deck">
+        <!-- 6 portrait cards inyectadas y animadas con GSAP -->
+      </div>
+
+      <button class="fc-arrow-btn is-next" id="fc-btn-next" aria-label="Siguiente pista" title="Siguiente pista (o Flecha Derecha)">
+        <span class="material-symbols-outlined text-[24px]">chevron_right</span>
+      </button>
+    </div>
+
+    <!-- BARRA INFERIOR DE CONTROL DE PISTA SELECCIONADA (SIN BOTÓN ROJO DE YOUTUBE) -->
+    <div class="relative z-20 flex items-center justify-between max-w-3xl mx-auto w-full px-3 py-2 rounded-2xl bg-surface-container-high/90 backdrop-blur-xl border border-outline-variant/40 shadow-2xl flex-shrink-0">
+      <div class="flex items-center gap-3 truncate">
+        <div class="w-9 h-9 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center text-primary flex-shrink-0">
+          <span class="material-symbols-outlined text-[20px]" id="current-track-icon">piano</span>
+        </div>
+        <div class="truncate text-left">
+          <p class="text-[12px] font-bold text-white truncate" id="carousel-current-title">Mia &amp; Sebastian's Theme (La La Land)</p>
+          <p class="text-[10px] text-[#d4a359] truncate" id="carousel-current-artist">Justin Hurwitz • Melodía Central</p>
+        </div>
+      </div>
+      <!-- Controles Rápidos -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button class="p-1.5 rounded-full text-on-surface-variant hover:text-white transition-all cursor-pointer" id="carousel-btn-prev" title="Canción anterior">
+          <span class="material-symbols-outlined text-[20px]">skip_previous</span>
+        </button>
+        <button class="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary flex items-center justify-center shadow-lg active:scale-90 transition-all cursor-pointer" id="carousel-btn-play" title="Reproducir / Pausar">
+          <span class="material-symbols-outlined text-[20px]" id="carousel-play-icon">play_arrow</span>
+        </button>
+        <button class="p-1.5 rounded-full text-on-surface-variant hover:text-white transition-all cursor-pointer" id="carousel-btn-next" title="Canción siguiente">
+          <span class="material-symbols-outlined text-[20px]">skip_next</span>
+        </button>
+        <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/20 hover:bg-primary/30 border border-primary/40 text-primary-fixed text-[11px] font-semibold transition-all ml-1 cursor-pointer" onclick="jumpToAct(5)" title="Ir a Nuestra Amistad">
+          <span class="material-symbols-outlined text-[14px] text-[#ff7aa2]">favorite</span>
+          <span class="hidden sm:inline">Amistad</span>
+          <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- ACTO 5: FINAL — NUESTRA AMISTAD & CISNES -->
+  <!-- ========================================== -->
+  <section class="act-section absolute inset-0 w-full h-full z-10 transition-opacity duration-1000 opacity-0 pointer-events-none overflow-hidden bg-[#0a0a0c]" id="act-5">
+    <!-- Fondo de 2 cisnes blancos nadando juntos con suave efecto Ken Burns -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <img alt="Dos cisnes blancos nadando juntos sobre un lago al atardecer, con pétalos de tulipán flotando en el agua" class="swans-img swans-drift" decoding="async" id="swans-img" src="assets/scenes/swans.jpg"/>
+    </div>
+    <!-- Velos ambientales -->
+    <div class="absolute inset-0 pointer-events-none" id="final-scrim-a" style="background: radial-gradient(ellipse 95% 90% at 50% 52%, rgba(10,10,12,0.62), rgba(10,10,12,0.9) 100%);"></div>
+    <div class="absolute inset-x-0 top-0 h-[52%] pointer-events-none" id="final-scrim-top" style="background: linear-gradient(to bottom, rgba(10,10,12,0.86), rgba(10,10,12,0.5) 55%, rgba(10,10,12,0));"></div>
+    <div class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-[#0a0a0c]/85 to-transparent"></div>
+    <div class="absolute inset-0 pointer-events-none overflow-hidden" id="petals-final"></div>
+
+    <!-- ESCENA 1: Lo que valoro de nuestra amistad -->
+    <div class="absolute inset-0 overflow-y-auto custom-scroll pt-12 pb-14 px-4 sm:px-8" id="final-scene-1">
+      <div class="min-h-full w-full max-w-5xl mx-auto flex flex-col items-center justify-center gap-3 sm:gap-4 py-2 text-center">
+        <div class="f1-item inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#d4a359]/20 border border-[#d4a359]/40 text-[#ffd7f4] text-[10px] tracking-widest uppercase font-semibold">
+          <span class="material-symbols-outlined text-[#d4a359] text-[13px]">favorite</span>
+          <span>Sección Final • Nuestra amistad</span>
+        </div>
+        <h2 class="f1-item text-headline-md sm:text-display-lg-mobile font-headline-lg text-primary-fixed drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)] -mt-1">
+          Lo que valoro de nuestra amistad
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
+          <div class="f1-item final-card">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="material-symbols-outlined text-[20px] text-[#ff7aa2]">favorite</span>
+              <h3 class="text-[12px] uppercase font-bold text-white">Siempre estás ahí</h3>
+            </div>
+            <p class="text-[11px] text-on-surface-variant leading-relaxed">
+              Eres esa persona que siempre está conmigo. En cualquier momento sé que cuento con tu apoyo incondicional, y eso vale más de lo que las palabras alcanzan a expresar.
+            </p>
+          </div>
+          <div class="f1-item final-card">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="material-symbols-outlined text-[20px] text-[#d4a359]">public</span>
+              <h3 class="text-[12px] uppercase font-bold text-[#ffd7f4]">La distancia no nos cambia</h3>
+            </div>
+            <p class="text-[11px] text-on-surface-variant leading-relaxed">
+              A pesar de la distancia física, lo que prevalece es nuestro querer de ambos. Los kilómetros existen, pero el lazo y el cariño mutuo siempre son más fuertes.
+            </p>
+          </div>
+          <div class="f1-item final-card">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="material-symbols-outlined text-[20px] text-secondary">all_inclusive</span>
+              <h3 class="text-[12px] uppercase font-bold text-secondary-fixed">Una amistad que construimos</h3>
+            </div>
+            <p class="text-[11px] text-on-surface-variant leading-relaxed">
+              No llegó sola: la fuimos construyendo juntos día con día, con risas, confidencias, lealtad y apoyo mutuo. Es un tesoro invaluable que cuido y valoro profundamente.
+            </p>
+          </div>
+        </div>
+        <button class="f1-item inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#201726]/95 via-[#4a2455]/95 to-[#201726]/95 border border-[#d4a359]/70 hover:border-[#d4a359] text-[#f4effa] text-[12px] font-semibold golden-button-glow backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-xl" id="btn-final-continue" type="button">
+          <span>Y quiero decirte algo más</span>
+          <span class="material-symbols-outlined text-[16px] text-[#ff7aa2] heart-pulse">favorite</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ESCENA 2: Gracias por existir y gracias por estar en los momentos que se necesita apoyo -->
+    <div class="absolute inset-0 flex flex-col items-center justify-start text-center px-6 pt-14 opacity-0 pointer-events-none transition-all duration-700" id="final-scene-2">
+      <span class="f2-item inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.28em] text-[#d4a359] uppercase drop-shadow">
+        <span class="material-symbols-outlined text-[13px] heart-pulse text-[#ff7aa2]">favorite</span>Para ti, Crystal
+      </span>
+      <h2 class="f2-item font-display-lg italic text-primary-fixed drop-shadow-[0_4px_26px_rgba(179,136,170,0.75)] text-[clamp(26px,5.2vw,54px)] leading-[1.08] mt-1">
+        Gracias por existir
+      </h2>
+      <p class="f2-item max-w-xl mx-auto mt-1.5 text-[clamp(12px,1.75vw,16px)] leading-snug text-[#f4effa] drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+        Gracias por estar en los momentos en que se necesita apoyo. Y cuando quieras, siempre estaré contigo, <span class="font-display-lg italic text-[#ffd7f4] text-[1.12em] font-semibold">my Jacki</span>.
+      </p>
+      <div class="f2-item absolute inset-x-0 bottom-[3.4rem] flex flex-wrap items-center justify-center gap-2 px-4 pointer-events-auto">
+        <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1e1924]/70 border border-[#b388aa]/40 hover:border-[#e29ab9]/80 text-[#f4effa] text-[11px] font-semibold backdrop-blur-xl transition-all duration-300 active:scale-95 cursor-pointer" id="btn-final-back" type="button">
+          <span class="material-symbols-outlined text-[16px] text-primary">arrow_back</span>
+          <span>Lo que valoro</span>
+        </button>
+        <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1e1924]/70 border border-[#d4a359]/50 hover:border-[#d4a359] text-[#f4effa] text-[11px] font-semibold backdrop-blur-xl transition-all duration-300 active:scale-95 cursor-pointer" id="btn-final-restart" type="button">
+          <span class="material-symbols-outlined text-[16px] text-[#d4a359]">replay</span>
+          <span>Volver al inicio</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- REPRODUCTOR MULTIMEDIA YOUTUBE / HTML5 -->
+  <!-- ========================================== -->
+  <div class="fixed -bottom-96 opacity-0 pointer-events-none" id="hidden-player-box">
+    <audio id="main-audio-player" playsinline="" preload="auto"></audio>
+    <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-1 h-1" id="yt-iframe" src="https://www.youtube.com/embed/gt3T94y2b24?enablejsapi=1&amp;rel=0&amp;playsinline=1" title="Crystal Player"></iframe>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- BARRA INFERIOR HUD CINEMÁTICA -->
+  <!-- ========================================== -->
+  <footer class="fixed bottom-0 left-0 w-full z-30 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/95 to-transparent pt-2.5 pb-2 px-4 sm:px-6 backdrop-blur-[4px]">
+    <div class="max-w-4xl mx-auto mb-1 flex items-center gap-2">
+      <span class="text-[10px] font-mono text-on-surface-variant w-8 text-right" id="time-current">00:00</span>
+      <div class="relative flex-1 h-3 cursor-pointer" id="timeline-container">
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-surface-container-highest/70 rounded-full overflow-hidden">
+          <div class="absolute top-0 left-0 h-full w-0 bg-gradient-to-r from-primary via-[#d4a359] to-secondary rounded-full" id="timeline-bar"></div>
+        </div>
+        <div class="absolute inset-0" id="timeline-waypoints"></div>
+      </div>
+      <span class="text-[10px] font-mono text-on-surface-variant w-8" id="time-duration">00:54</span>
+    </div>
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-1.5 truncate max-w-[240px] sm:max-w-sm">
+        <span class="w-2 h-2 rounded-full bg-[#d4a359] animate-pulse flex-shrink-0"></span>
+        <span class="text-[10px] text-on-surface tracking-wider uppercase font-semibold truncate" id="chapter-indicator-label">
+          Acto 1: La Mirada de la Pantera • Para Crystal
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button class="p-1 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" id="btn-rewind" title="Rebobinar 5s">
+          <span class="material-symbols-outlined text-[18px]">replay_5</span>
+        </button>
+        <button class="w-8 h-8 rounded-full bg-primary/20 border border-primary/50 text-primary flex items-center justify-center transition-all shadow-md active:scale-90 cursor-pointer" id="btn-play-pause" title="Pausar/Reanudar">
+          <span class="material-symbols-outlined text-[20px]" id="play-pause-icon">pause</span>
+        </button>
+        <button class="p-1 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" id="btn-skip-next" title="Siguiente Acto">
+          <span class="material-symbols-outlined text-[18px]">skip_next</span>
+        </button>
+      </div>
+      <div class="flex items-center gap-2">
+        <button class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container/70 border border-outline-variant/40 text-[10px] text-on-surface-variant hover:text-on-surface cursor-pointer" id="btn-mute-soundscape">
+          <span class="material-symbols-outlined text-[13px] text-primary" id="btn-sound-icon">piano</span>
+          <span class="hidden sm:inline">Melodía</span>
+        </button>
+        <button class="p-1 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" id="btn-toggle-fullscreen" title="Pantalla Completa">
+          <span class="material-symbols-outlined text-[18px]">fullscreen</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- ========================================== -->
+<!-- SCRIPTS: AUDIO, SINTETIZADOR, CARRUSEL & ANIMACIONES -->
+<!-- ========================================== -->
+<script src="assets/pantera_hd.js"></script>
+<script>
+  // ==========================================
+  // DISMISS DE PANTALLA BOOT: INICIO FLUIDO
+  // ==========================================
+  function dismissBoot() {
+    const boot = document.getElementById('boot');
+    if (!boot || boot.classList.contains('is-done')) return;
+    boot.classList.add('is-done');
+    document.body.classList.remove('is-booting');
+    setTimeout(() => { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 900);
+  }
+  if (document.readyState === 'complete') {
+    dismissBoot();
+  } else {
+    window.addEventListener('load', dismissBoot);
+    setTimeout(dismissBoot, 600); // Arranque casi instantáneo
+  }
+
+  // ==========================================
+  // SINTETIZADOR DE PIANO: "MIA & SEBASTIAN'S THEME" (Web Audio API)
+  // ==========================================
+  class LaLaLandPianoSynthesizer {
+    constructor() {
+      this.ctx = null;
+      this.isPlaying = false;
+      this.masterGain = null;
+      this.timerId = null;
+      this.step = 0;
+      this.isMuted = false;
+    }
+
+    init() {
+      if (!this.ctx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.ctx = new AudioContext();
+        this.masterGain = this.ctx.createGain();
+        this.masterGain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+        this.masterGain.connect(this.ctx.destination);
+      }
+      if (this.ctx.state === 'suspended') {
+        this.ctx.resume();
+      }
+    }
+
+    playNote(freq, time, duration = 1.2, volume = 0.22) {
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const oscHarm = this.ctx.createOscillator();
+      const noteGain = this.ctx.createGain();
+
+      osc.type = 'triangle';
+      oscHarm.type = 'sine';
+
+      osc.frequency.setValueAtTime(freq, time);
+      oscHarm.frequency.setValueAtTime(freq * 2, time);
+
+      noteGain.gain.setValueAtTime(0, time);
+      noteGain.gain.linearRampToValueAtTime(volume, time + 0.03);
+      noteGain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+      osc.connect(noteGain);
+      oscHarm.connect(noteGain);
+      noteGain.connect(this.masterGain);
+
+      osc.start(time);
+      oscHarm.start(time);
+      osc.stop(time + duration + 0.05);
+      oscHarm.stop(time + duration + 0.05);
+    }
+
+    startTheme() {
+      this.init();
+      if (this.isPlaying) return;
+      this.isPlaying = true;
+
+      const themeNotes = [
+        { f: 440.0, d: 0.5 }, { f: 554.37, d: 0.5 }, { f: 659.25, d: 0.8 }, { f: 739.99, d: 1.4 },
+        { f: 659.25, d: 0.6 }, { f: 554.37, d: 0.6 }, { f: 440.0, d: 1.2 },
+        { f: 493.88, d: 0.5 }, { f: 587.33, d: 0.5 }, { f: 739.99, d: 0.9 }, { f: 830.61, d: 1.5 },
+        { f: 739.99, d: 0.6 }, { f: 587.33, d: 0.6 }, { f: 493.88, d: 1.2 },
+        { f: 554.37, d: 0.4 }, { f: 659.25, d: 0.4 }, { f: 739.99, d: 1.1 }, { f: 880.00, d: 1.6 },
+        { f: 830.61, d: 0.5 }, { f: 739.99, d: 0.5 }, { f: 659.25, d: 1.3 }
+      ];
+
+      const bassNotes = [220.0, 164.81, 146.83, 220.0];
+      let noteIdx = 0;
+      let bassIdx = 0;
+
+      const scheduleBeat = () => {
+        if (!this.isPlaying) return;
+        const now = this.ctx.currentTime;
+        const n = themeNotes[noteIdx];
+        this.playNote(n.f, now, n.d, 0.22);
+
+        if (noteIdx % 4 === 0) {
+          const b = bassNotes[bassIdx % bassNotes.length];
+          this.playNote(b, now, 2.2, 0.16);
+          bassIdx++;
+        }
+
+        noteIdx = (noteIdx + 1) % themeNotes.length;
+        this.timerId = setTimeout(scheduleBeat, 480);
+      };
+
+      scheduleBeat();
+    }
+
+    stopTheme() {
+      this.isPlaying = false;
+      if (this.timerId) clearTimeout(this.timerId);
+    }
+
+    toggleMute() {
+      this.init();
+      if (!this.isPlaying) {
+        this.startTheme();
+        return false;
+      }
+      this.isMuted = !this.isMuted;
+      if (this.masterGain) {
+        const target = this.isMuted ? 0 : 0.35;
+        this.masterGain.gain.setTargetAtTime(target, this.ctx.currentTime, 0.1);
+      }
+      return this.isMuted;
+    }
+  }
+
+  const pianoSynth = new LaLaLandPianoSynthesizer();
+
+  // ==========================================
+  // PLAYLIST DE CRYSTAL (6 OBRAS) & FLICK CARDS GSAP
+  // ==========================================
+  const crystalSongs = [
+    {
+      id: 'la_la_land',
+      file: 'audio/cancion0.mp3',
+      originalFile: 'audio/Justin Hurwitz - Mia & Sebastian’s Theme.mp3',
+      fallbackFile: 'audio/la_la_land.mp3',
+      onlineUrl: '',
+      ytId: 'gt3T94y2b24',
+      title: "Mia & Sebastian's Theme",
+      subtitle: "Justin Hurwitz • La La Land",
+      artist: 'Justin Hurwitz',
+      desc: 'Melodía central al piano: nostalgia, sueños y elegancia pura.',
+      icon: 'piano',
+      badge: 'Obra Maestra',
+      cover: 'assets/cover_lalaland.jpg'
+    },
+    {
+      id: 'city_of_stars',
+      file: 'audio/cancion1.mp3',
+      originalFile: 'audio/Ryan Gosling - City Of Stars.mp3',
+      onlineUrl: '',
+      ytId: 'cZAw8qVxRoA',
+      title: 'City of Stars',
+      subtitle: 'Ryan Gosling • La La Land',
+      artist: 'Ryan Gosling',
+      desc: 'Premio Óscar a la Mejor Canción Original, emotiva y brillante.',
+      icon: 'star',
+      badge: 'Favorita 1',
+      cover: 'assets/cover_cityofstars.jpg'
+    },
+    {
+      id: 'stuck_with_u',
+      file: 'audio/cancion2.mp3',
+      originalFile: 'audio/Ariana Grande - Stuck with U.mp3',
+      onlineUrl: '',
+      ytId: 'pE49WK-oHYk',
+      title: 'Stuck with U',
+      subtitle: 'Ariana Grande & Justin Bieber',
+      artist: 'Ariana Grande, Justin Bieber',
+      desc: 'Dulzura, complicidad y ternura en cada estrofa.',
+      icon: 'favorite',
+      badge: 'Favorita 2',
+      cover: 'assets/cover_stuckwithu.jpg'
+    },
+    {
+      id: 'long_long_time',
+      file: 'audio/cancion3.mp3',
+      originalFile: "audio/Harry James & His Orchestra - It's Been a Long, Long Time (1999 - Remaster).mp3",
+      onlineUrl: '',
+      ytId: 'vauq6BqJ-bU',
+      title: "It's Been a Long, Long Time",
+      subtitle: 'Harry James & His Orchestra',
+      artist: 'Harry James',
+      desc: 'Clásico inolvidable de la era dorada del jazz y el reencuentro.',
+      icon: 'graphic_eq',
+      badge: 'Favorita 3',
+      cover: 'assets/cover_harryjames.jpg'
+    },
+    {
+      id: 'is_it_a_crime',
+      file: 'audio/cancion4.mp3',
+      originalFile: 'audio/Sade - Is It a Crime.mp3',
+      onlineUrl: '',
+      ytId: 'NYz9USyGttM',
+      title: 'Is It a Crime',
+      subtitle: 'Sade • Diamond Life & Promise',
+      artist: 'Sade',
+      desc: 'Pasión profunda, elegancia atemporal y la voz inconfundible de Sade.',
+      icon: 'music_note',
+      badge: 'Favorita 4',
+      cover: 'assets/cover_sade.jpg'
+    },
+    {
+      id: 'panther_reverie',
+      file: 'audio/cancion0.mp3',
+      originalFile: 'audio/la_la_land.mp3',
+      onlineUrl: '',
+      ytId: 'gt3T94y2b24',
+      title: 'Panther & Tulip Reverie',
+      subtitle: 'Dedicada a Crystal • Edén Violeta',
+      artist: 'Sinfonía Floral 1997',
+      desc: 'La serenidad de la pantera entre tulipanes y satén violeta.',
+      icon: 'pets',
+      badge: 'Dedicada',
+      cover: 'assets/cover_panther.jpg'
+    }
+  ];
+
+  let carouselIndex = 0;
+  let isMediaPlaying = false;
+  let isFlicking = false;
+  let hasIntroRun = false;
+  let isPointerDown = false;
+  let isDeckHovered = false;
+  let autoplayTimer = null;
+  let glowToggle = 0;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const ytIframe = document.getElementById('yt-iframe');
+  const mainAudioPlayer = document.getElementById('main-audio-player');
+  const deckContainer = document.getElementById('fc-deck');
+  const carouselCurrentTitle = document.getElementById('carousel-current-title');
+  const carouselCurrentArtist = document.getElementById('carousel-current-artist');
+  const carouselPlayIcon = document.getElementById('carousel-play-icon');
+  const currentTrackIcon = document.getElementById('current-track-icon');
+  const act2MusicIcon = document.getElementById('act2-music-icon');
+  const act2MusicState = document.getElementById('act2-music-state');
+  const act2MusicTitle = document.getElementById('act2-music-title');
+  const btnFcPrev = document.getElementById('fc-btn-prev');
+  const btnFcNext = document.getElementById('fc-btn-next');
+
+  const cardEls = [];
+
+  function getWrappedDistance(i, activeIdx, total = 6) {
+    let diff = (i - activeIdx) % total;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+    return diff;
+  }
+
+  function getDeckPose(d, cardWidth, cardHeight) {
+    const absD = Math.abs(d);
+    const sign = d === 0 ? 0 : Math.sign(d);
+
+    if (absD > 3) {
+      return {
+        autoAlpha: 0,
+        x: 0, y: 0, z: -600,
+        rotateY: 0, rotateZ: 0,
+        scale: 0.82, zIndex: 0,
+        shadeOpacity: 0.8
+      };
+    }
+
+    const x = sign * Math.pow(absD, 0.7) * cardWidth * 0.52;
+    const z = -absD * 150;
+    const y = absD * cardWidth * 0.015;
+    const rotateY = -sign * Math.min(absD, 3) * 20;
+    const rotateZ = sign * absD * 2.2;
+    const scale = 1 - absD * 0.035;
+    const zIndex = Math.round(20 - absD * 2);
+    const shadeOpacity = d === 0 ? 0 : Math.min(0.18 + absD * 0.2, 0.8);
+
+    return { autoAlpha: 1, x, y, z, rotateY, rotateZ, scale, zIndex, shadeOpacity };
+  }
+
+  function crossfadeAmbientGlow(newCoverSrc, instant = false) {
+    const nextImg = glowToggle === 0 ? document.getElementById('fc-ambient-1') : document.getElementById('fc-ambient-0');
+    const currImg = glowToggle === 0 ? document.getElementById('fc-ambient-0') : document.getElementById('fc-ambient-1');
+    if (!nextImg || !currImg) return;
+
+    nextImg.src = newCoverSrc;
+    if (instant || prefersReducedMotion) {
+      gsap.set(nextImg, { opacity: 0.16 });
+      gsap.set(currImg, { opacity: 0 });
+    } else {
+      gsap.to(nextImg, { opacity: 0.16, duration: 0.7, ease: "power2.out" });
+      gsap.to(currImg, { opacity: 0, duration: 0.7, ease: "power2.out" });
+    }
+    glowToggle = 1 - glowToggle;
+  }
+
+  function updateSelectedSongHUD(idx) {
+    const active = crystalSongs[idx];
+    if (!active) return;
+    if (carouselCurrentTitle) carouselCurrentTitle.textContent = active.title;
+    if (carouselCurrentArtist) carouselCurrentArtist.textContent = `${active.artist} • ${active.badge}`;
+    if (currentTrackIcon) currentTrackIcon.textContent = active.icon;
+    if (act2MusicTitle) act2MusicTitle.textContent = `♪ ${active.title}`;
+
+    cardEls.forEach((card, i) => {
+      const ctaBtn = card.querySelector('.fc-cta-btn');
+      if (ctaBtn) {
+        const ctaIcon = ctaBtn.querySelector('.fc-cta-icon');
+        const ctaText = ctaBtn.querySelector('.fc-cta-text');
+        const isCurrentActive = (i === carouselIndex);
+        if (ctaIcon) ctaIcon.textContent = isCurrentActive && isMediaPlaying ? 'pause' : 'play_arrow';
+        if (ctaText) ctaText.textContent = isCurrentActive && isMediaPlaying ? 'Pausar' : 'Reproducir';
+      }
+    });
+  }
+
+  function initFlickCardsDeck() {
+    deckContainer.innerHTML = '';
+    cardEls.length = 0;
+
+    const cardRect = deckContainer.getBoundingClientRect();
+    const cardWidth = cardRect.width || 260;
+    const cardHeight = cardRect.height || (cardWidth * 4.1 / 3);
+
+    crystalSongs.forEach((song, i) => {
+      const card = document.createElement('div');
+      card.className = 'fc-card';
+      card.setAttribute('data-card-index', i);
+
+      const titleFontSize = Math.max(16, Math.round(cardWidth * 0.13));
+
+      card.innerHTML = `
+        <img class="fc-card-img" src="${song.cover}" alt="${song.title}" loading="eager" />
+        <div class="fc-card-shade"></div>
+        <div class="fc-card-content">
+          <div class="fc-card-header">
+            <span class="text-[9px] font-bold uppercase tracking-widest text-[#d4a359] px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-[#d4a359]/40 shadow-sm">${song.badge}</span>
+            <span class="material-symbols-outlined text-[17px] text-[#ffd7f4] drop-shadow">${song.icon}</span>
+          </div>
+          <h3 class="fc-card-title" style="font-size: ${titleFontSize}px;">${song.title}</h3>
+          <button class="fc-cta-btn" data-track-index="${i}" aria-label="Reproducir pista">
+            <span class="material-symbols-outlined text-[16px] text-[#ffd7f4] fc-cta-icon">${i === carouselIndex && isMediaPlaying ? 'pause' : 'play_arrow'}</span>
+            <span class="fc-cta-text">${i === carouselIndex && isMediaPlaying ? 'Pausar' : 'Reproducir'}</span>
+          </button>
+        </div>
+      `;
+
+      const cta = card.querySelector('.fc-cta-btn');
+      cta.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (carouselIndex === i) {
+          togglePlayCurrentSong();
+        } else {
+          flickToCard(i);
+          playCurrentSong();
+        }
+      });
+
+      card.addEventListener('click', () => {
+        if (isFlicking || isPointerDown) return;
+        if (carouselIndex === i) {
+          togglePlayCurrentSong();
+        } else {
+          flickToCard(i);
+        }
+      });
+
+      deckContainer.appendChild(card);
+      cardEls.push(card);
+    });
+
+    cardEls.forEach((card, idx) => {
+      const d = getWrappedDistance(idx, carouselIndex);
+      const pose = getDeckPose(d, cardWidth, cardHeight);
+      card.style.zIndex = pose.zIndex;
+      gsap.set(card, {
+        x: pose.x, y: pose.y, z: pose.z,
+        rotateY: pose.rotateY, rotateZ: pose.rotateZ,
+        scale: pose.scale, autoAlpha: pose.autoAlpha
+      });
+      const shade = card.querySelector('.fc-card-shade');
+      if (shade) gsap.set(shade, { opacity: pose.shadeOpacity });
+
+      const title = card.querySelector('.fc-card-title');
+      const cta = card.querySelector('.fc-cta-btn');
+      const header = card.querySelector('.fc-card-header');
+      if (d === 0) {
+        if (title) gsap.set(title, { autoAlpha: 1, y: 0 });
+        if (cta) gsap.set(cta, { autoAlpha: 1, scale: 1 });
+        if (header) gsap.set(header, { autoAlpha: 1 });
+      } else {
+        if (title) gsap.set(title, { autoAlpha: 0 });
+        if (cta) gsap.set(cta, { autoAlpha: 0 });
+        if (header) gsap.set(header, { autoAlpha: 0 });
+      }
+    });
+
+    updateSelectedSongHUD(carouselIndex);
+    crossfadeAmbientGlow(crystalSongs[carouselIndex].cover, true);
+  }
+
+  window.addEventListener('resize', () => {
+    if (isFlicking || isPointerDown || cardEls.length === 0) return;
+    const cardRect = deckContainer.getBoundingClientRect();
+    const cardWidth = cardRect.width || 260;
+    const cardHeight = cardRect.height || (cardWidth * 4.1 / 3);
+    const titleFontSize = Math.max(16, Math.round(cardWidth * 0.13));
+
+    cardEls.forEach((card, idx) => {
+      const title = card.querySelector('.fc-card-title');
+      if (title) title.style.fontSize = `${titleFontSize}px`;
+
+      const d = getWrappedDistance(idx, carouselIndex);
+      const pose = getDeckPose(d, cardWidth, cardHeight);
+      card.style.zIndex = pose.zIndex;
+      gsap.set(card, {
+        x: pose.x, y: pose.y, z: pose.z,
+        rotateY: pose.rotateY, rotateZ: pose.rotateZ,
+        scale: pose.scale, autoAlpha: pose.autoAlpha
+      });
+    });
+  });
+
+  function flick(direction) {
+    if (isFlicking) return;
+    isFlicking = true;
+
+    const prevIdx = carouselIndex;
+    const nextIdx = (carouselIndex + direction + crystalSongs.length) % crystalSongs.length;
+    const oldFrontCard = cardEls[prevIdx];
+    const newFrontCard = cardEls[nextIdx];
+
+    const cardRect = deckContainer.getBoundingClientRect();
+    const cardWidth = cardRect.width || 260;
+    const cardHeight = cardRect.height || (cardWidth * 4.1 / 3);
+
+    carouselIndex = nextIdx;
+    crossfadeAmbientGlow(crystalSongs[nextIdx].cover);
+    updateSelectedSongHUD(nextIdx);
+
+    // Reproducción fluida y continua: al deslizar o navegar con botones, reproduce normalmente la canción
+    playCurrentSong();
+
+    if (prefersReducedMotion) {
+      cardEls.forEach((card, idx) => {
+        const d = getWrappedDistance(idx, nextIdx);
+        const pose = getDeckPose(d, cardWidth, cardHeight);
+        card.style.zIndex = pose.zIndex;
+        gsap.set(card, {
+          x: pose.x, y: pose.y, z: pose.z,
+          rotateY: pose.rotateY, rotateZ: pose.rotateZ,
+          scale: pose.scale, autoAlpha: pose.autoAlpha
+        });
+        const shade = card.querySelector('.fc-card-shade');
+        if (shade) gsap.set(shade, { opacity: pose.shadeOpacity });
+        const title = card.querySelector('.fc-card-title');
+        const cta = card.querySelector('.fc-cta-btn');
+        const header = card.querySelector('.fc-card-header');
+        if (d === 0) {
+          if (title) gsap.set(title, { autoAlpha: 1, y: 0 });
+          if (cta) gsap.set(cta, { autoAlpha: 1, scale: 1 });
+          if (header) gsap.set(header, { autoAlpha: 1 });
+        } else {
+          if (title) gsap.set(title, { autoAlpha: 0 });
+          if (cta) gsap.set(cta, { autoAlpha: 0 });
+          if (header) gsap.set(header, { autoAlpha: 0 });
+        }
+      });
+      isFlicking = false;
+      return;
+    }
+
+    const arcSign = direction === 1 ? -1 : 1;
+    const arcX = arcSign * cardWidth * 1.05;
+    const arcY = -0.06 * cardHeight;
+    const arcRotZ = arcSign * 14;
+    const arcRotY = -arcSign * 30;
+    const arcScale = 0.96;
+
+    const oldTitle = oldFrontCard.querySelector('.fc-card-title');
+    const oldCta = oldFrontCard.querySelector('.fc-cta-btn');
+    const oldHeader = oldFrontCard.querySelector('.fc-card-header');
+    if (oldTitle) gsap.to(oldTitle, { autoAlpha: 0, duration: 0.22, ease: "power2.out" });
+    if (oldCta) gsap.to(oldCta, { autoAlpha: 0, duration: 0.22, ease: "power2.out" });
+    if (oldHeader) gsap.to(oldHeader, { autoAlpha: 0, duration: 0.22, ease: "power2.out" });
+
+    gsap.to(oldFrontCard, {
+      x: arcX, y: arcY,
+      rotateZ: arcRotZ, rotateY: arcRotY,
+      scale: arcScale,
+      duration: 0.4,
+      ease: "power3.out",
+      onComplete: () => {
+        const targetPose = getDeckPose(getWrappedDistance(prevIdx, nextIdx), cardWidth, cardHeight);
+        oldFrontCard.style.zIndex = targetPose.zIndex;
+
+        const shade = oldFrontCard.querySelector('.fc-card-shade');
+        if (shade) {
+          gsap.to(shade, { opacity: targetPose.shadeOpacity, duration: 0.66, ease: "expo.out" });
+        }
+
+        gsap.to(oldFrontCard, {
+          x: targetPose.x, y: targetPose.y, z: targetPose.z,
+          rotateY: targetPose.rotateY, rotateZ: targetPose.rotateZ,
+          scale: targetPose.scale, autoAlpha: targetPose.autoAlpha,
+          duration: 0.66,
+          ease: "expo.out",
+          onComplete: () => {
+            isFlicking = false;
+          }
+        });
+      }
+    });
+
+    cardEls.forEach((card, idx) => {
+      if (idx === prevIdx) return;
+      const d = getWrappedDistance(idx, nextIdx);
+      const pose = getDeckPose(d, cardWidth, cardHeight);
+      const delay = Math.abs(d) * 0.03;
+
+      card.style.zIndex = pose.zIndex;
+
+      const shade = card.querySelector('.fc-card-shade');
+      if (shade) {
+        gsap.to(shade, {
+          opacity: pose.shadeOpacity,
+          duration: 0.95,
+          delay: delay,
+          ease: "expo.out"
+        });
+      }
+
+      gsap.to(card, {
+        x: pose.x, y: pose.y, z: pose.z,
+        rotateY: pose.rotateY, rotateZ: pose.rotateZ,
+        scale: pose.scale, autoAlpha: pose.autoAlpha,
+        duration: 0.95,
+        delay: delay,
+        ease: "expo.out"
+      });
+
+      if (d !== 0) {
+        const title = card.querySelector('.fc-card-title');
+        const cta = card.querySelector('.fc-cta-btn');
+        const header = card.querySelector('.fc-card-header');
+        if (title) gsap.to(title, { autoAlpha: 0, duration: 0.3 });
+        if (cta) gsap.to(cta, { autoAlpha: 0, duration: 0.3 });
+        if (header) gsap.to(header, { autoAlpha: 0, duration: 0.3 });
+      }
+    });
+
+    const newTitle = newFrontCard.querySelector('.fc-card-title');
+    const newCta = newFrontCard.querySelector('.fc-cta-btn');
+    const newHeader = newFrontCard.querySelector('.fc-card-header');
+
+    if (newTitle) {
+      gsap.fromTo(newTitle,
+        { autoAlpha: 0, y: 18 },
+        { autoAlpha: 1, y: 0, duration: 0.6, delay: 0.18, ease: "power2.out" }
+      );
+    }
+    if (newHeader) {
+      gsap.fromTo(newHeader,
+        { autoAlpha: 0, y: -8 },
+        { autoAlpha: 1, y: 0, duration: 0.45, delay: 0.22, ease: "power2.out" }
+      );
+    }
+    if (newCta) {
+      gsap.fromTo(newCta,
+        { autoAlpha: 0, y: 10, scale: 0.92 },
+        { autoAlpha: 1, y: 0, scale: 1, duration: 0.45, delay: 0.38, ease: "power2.out" }
+      );
+    }
+  }
+
+  function flickToCard(targetIdx) {
+    if (targetIdx === carouselIndex || isFlicking) return;
+    const d = getWrappedDistance(targetIdx, carouselIndex);
+    flick(d > 0 ? 1 : -1);
+  }
+
+  // Interacción Drag & Swipe con puntero
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStartTime = 0;
+
+  deckContainer.addEventListener('pointerdown', (e) => {
+    if (isFlicking) return;
+    if (e.target.closest('.fc-cta-btn')) return;
+
+    const frontCard = cardEls[carouselIndex];
+    if (!frontCard) return;
+
+    isPointerDown = true;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragStartTime = performance.now();
+    stopAutoplay();
+
+    frontCard.classList.add('is-dragging');
+    try { deckContainer.setPointerCapture(e.pointerId); } catch(err) {}
+  });
+
+  deckContainer.addEventListener('pointermove', (e) => {
+    if (!isPointerDown || isFlicking) return;
+    const frontCard = cardEls[carouselIndex];
+    if (!frontCard) return;
+
+    const dx = e.clientX - dragStartX;
+    const dy = e.clientY - dragStartY;
+    const rotZ = (dx / 320) * 8.5;
+    const rotY = -(dx / 320) * 11;
+
+    gsap.set(frontCard, {
+      x: dx,
+      y: dy * 0.12,
+      rotateZ: rotZ,
+      rotateY: rotY,
+      scale: 1.02
+    });
+  });
+
+  const handlePointerEnd = (e) => {
+    if (!isPointerDown) return;
+    isPointerDown = false;
+    try { deckContainer.releasePointerCapture(e.pointerId); } catch(err) {}
+
+    const frontCard = cardEls[carouselIndex];
+    if (!frontCard) return;
+    frontCard.classList.remove('is-dragging');
+
+    const cardRect = deckContainer.getBoundingClientRect();
+    const cardWidth = cardRect.width || 260;
+    const dx = e.clientX - dragStartX;
+    const dt = Math.max(1, performance.now() - dragStartTime);
+    const velocity = Math.abs(dx) / dt;
+
+    const isPast22Percent = Math.abs(dx) > cardWidth * 0.22;
+    const isFastFlick = velocity > 0.45;
+
+    if (isPast22Percent || isFastFlick) {
+      if (dx < 0) {
+        flick(1); // Siguiente
+      } else {
+        flick(-1); // Anterior
+      }
+    } else {
+      gsap.to(frontCard, {
+        x: 0, y: 0,
+        rotateZ: 0, rotateY: 0,
+        scale: 1,
+        duration: 0.85,
+        ease: "elastic.out(1, 0.6)",
+        onComplete: () => {
+          restartAutoplay();
+        }
+      });
+    }
+  };
+
+  deckContainer.addEventListener('pointerup', handlePointerEnd);
+  deckContainer.addEventListener('pointercancel', handlePointerEnd);
+
+  if (btnFcPrev) btnFcPrev.addEventListener('click', () => flick(-1));
+  if (btnFcNext) btnFcNext.addEventListener('click', () => flick(1));
+
+  window.addEventListener('keydown', (e) => {
+    if (currentAct === 4) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        flick(-1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        flick(1);
+      }
+    }
+  });
+
+  function startAutoplay() {
+    // Desactivado para que la música se reproduzca de forma continua sin interrupciones
+  }
+
+  function stopAutoplay() {}
+  function restartAutoplay() {}
+
+  deckContainer.addEventListener('pointerenter', () => { isDeckHovered = true; });
+  deckContainer.addEventListener('pointerleave', () => { isDeckHovered = false; });
+
+  function runFlickCardsIntro() {
+    if (hasIntroRun) return;
+    hasIntroRun = true;
+
+    const cardRect = deckContainer.getBoundingClientRect();
+    const cardWidth = cardRect.width || 260;
+    const cardHeight = cardRect.height || (cardWidth * 4.1 / 3);
+
+    const sortedIndices = [...Array(6).keys()].sort((a, b) => {
+      const da = Math.abs(getWrappedDistance(a, carouselIndex));
+      const db = Math.abs(getWrappedDistance(b, carouselIndex));
+      return db - da;
+    });
+
+    sortedIndices.forEach((cardIdx, order) => {
+      const card = cardEls[cardIdx];
+      const d = getWrappedDistance(cardIdx, carouselIndex);
+      const pose = getDeckPose(d, cardWidth, cardHeight);
+      card.style.zIndex = pose.zIndex;
+
+      const shade = card.querySelector('.fc-card-shade');
+      if (shade) gsap.set(shade, { opacity: pose.shadeOpacity });
+
+      const tilt = (cardIdx % 2 === 0 ? 24 : -24);
+
+      if (prefersReducedMotion) {
+        gsap.set(card, {
+          x: pose.x, y: pose.y, z: pose.z,
+          rotateY: pose.rotateY, rotateZ: pose.rotateZ,
+          scale: pose.scale, autoAlpha: pose.autoAlpha
+        });
+        if (d === 0) {
+          const title = card.querySelector('.fc-card-title');
+          const cta = card.querySelector('.fc-cta-btn');
+          const header = card.querySelector('.fc-card-header');
+          if (title) gsap.set(title, { autoAlpha: 1, y: 0 });
+          if (cta) gsap.set(cta, { autoAlpha: 1, scale: 1 });
+          if (header) gsap.set(header, { autoAlpha: 1 });
+        }
+      } else {
+        gsap.fromTo(card,
+          {
+            y: cardHeight * 1.5 + 160,
+            rotateZ: tilt,
+            rotateY: pose.rotateY * 0.4,
+            scale: 0.82,
+            autoAlpha: 0
+          },
+          {
+            x: pose.x, y: pose.y, z: pose.z,
+            rotateY: pose.rotateY, rotateZ: pose.rotateZ,
+            scale: pose.scale, autoAlpha: pose.autoAlpha,
+            duration: 1.3,
+            delay: order * 0.07,
+            ease: "expo.out",
+            onComplete: () => {
+              if (cardIdx === carouselIndex) {
+                const title = card.querySelector('.fc-card-title');
+                const cta = card.querySelector('.fc-cta-btn');
+                const header = card.querySelector('.fc-card-header');
+                if (title) gsap.fromTo(title, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" });
+                if (header) gsap.to(header, { autoAlpha: 1, duration: 0.4 });
+                if (cta) gsap.fromTo(cta, { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.45, delay: 0.25, ease: "power2.out" });
+              }
+            }
+          }
+        );
+      }
+    });
+
+  }
+
+  // Reproducción de audio nativo y fluidos switches
+  function tryPlayNativeAudio(src, onFail) {
+    if (!src) {
+      if (onFail) onFail();
+      return;
+    }
+    const fullSrc = (new URL(src, window.location.href)).href;
+    if (mainAudioPlayer.src === fullSrc && !mainAudioPlayer.paused) {
+      pianoSynth.stopTheme();
+      return;
+    }
+    if (mainAudioPlayer.src !== fullSrc) {
+      mainAudioPlayer.src = src;
+    }
+    const p = mainAudioPlayer.play();
+    if (p !== undefined) {
+      p.then(() => {
+        pianoSynth.stopTheme();
+        try {
+          ytIframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        } catch(e) {}
+      }).catch(err => {
+        if (err.name === 'AbortError') return; // Cancelación normal al deslizar rápido
+        console.warn('Aviso de audio:', err);
+        if (onFail) onFail();
+      });
+    }
+  }
+
+  // Reproducción continua: cuando finaliza la pista, avanza automáticamente a la siguiente
+  mainAudioPlayer.addEventListener('ended', () => {
+    flick(1);
+  });
+
+  function playCurrentSong() {
+    const active = crystalSongs[carouselIndex];
+    updateMusicUI(true);
+
+    const tryYtOrSynth = () => {
+      if (active.id === 'la_la_land') {
+        pianoSynth.startTheme();
+      }
+      if (active.ytId) {
+        ytIframe.src = `https://www.youtube.com/embed/${active.ytId}?enablejsapi=1&autoplay=1&rel=0&playsinline=1`;
+      }
+    };
+
+    if (active.file) {
+      tryPlayNativeAudio(active.file, () => {
+        if (active.originalFile) {
+          tryPlayNativeAudio(active.originalFile, () => {
+            if (active.fallbackFile && active.fallbackFile !== active.file) {
+              tryPlayNativeAudio(active.fallbackFile, tryYtOrSynth);
+            } else {
+              tryYtOrSynth();
+            }
+          });
+        } else {
+          tryYtOrSynth();
+        }
+      });
+    } else {
+      tryYtOrSynth();
+    }
+  }
+
+  function pauseCurrentSong() {
+    updateMusicUI(false);
+    if (mainAudioPlayer) mainAudioPlayer.pause();
+    pianoSynth.stopTheme();
+    try {
+      ytIframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    } catch(e) {}
+  }
+
+  function togglePlayCurrentSong() {
+    if (isMediaPlaying) {
+      pauseCurrentSong();
+    } else {
+      playCurrentSong();
+    }
+  }
+
+  function updateMusicUI(playing) {
+    isMediaPlaying = playing;
+    if (carouselPlayIcon) carouselPlayIcon.textContent = playing ? 'pause' : 'play_arrow';
+    if (act2MusicState) act2MusicState.textContent = playing ? 'pause' : 'play_arrow';
+    if (act2MusicIcon) {
+      act2MusicIcon.classList.toggle('spin-vinyl', playing);
+    }
+    updateSelectedSongHUD(carouselIndex);
+  }
+
+  document.getElementById('carousel-btn-prev').addEventListener('click', () => {
+    flick(-1);
+  });
+  document.getElementById('carousel-btn-next').addEventListener('click', () => {
+    flick(1);
+  });
+  document.getElementById('carousel-btn-play').addEventListener('click', togglePlayCurrentSong);
+
+  initFlickCardsDeck();
+
+  // ==========================================
+  // NAVEGACIÓN ENTRE LOS 5 ACTOS CINEMÁTICOS
+  // ==========================================
+  let currentAct = 1;
+  const actSections = {
+    1: document.getElementById('act-1'),
+    2: document.getElementById('act-2'),
+    3: document.getElementById('act-3'),
+    4: document.getElementById('act-4'),
+    5: document.getElementById('act-5')
+  };
+  const actButtons = {
+    1: document.getElementById('act-btn-1'),
+    2: document.getElementById('act-btn-2'),
+    3: document.getElementById('act-btn-3'),
+    4: document.getElementById('act-btn-4'),
+    5: document.getElementById('act-btn-5')
+  };
+
+  const chapterLabel = document.getElementById('chapter-indicator-label');
+  const chapterTitles = {
+    1: 'Acto 1: La Mirada de la Pantera • Para Crystal',
+    2: 'Acto 2: Bóveda Astral & Escorpio de 1997',
+    3: 'Acto 3: Memorias de 1997, Hale-Bopp & Historia',
+    4: 'Acto 4: Canciones que te gustan • Crystal',
+    5: 'Acto 5: Nuestra Amistad • Para Crystal'
+  };
+
+  function jumpToAct(actNum) {
+    currentAct = actNum;
+    Object.keys(actSections).forEach(k => {
+      const sec = actSections[k];
+      const btn = actButtons[k];
+      if (parseInt(k, 10) === actNum) {
+        sec.classList.remove('opacity-0', 'pointer-events-none');
+        sec.classList.add('opacity-100', 'pointer-events-auto');
+        btn.className = 'act-nav-pill px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all text-primary-fixed bg-primary/20 border border-primary/50';
+      } else {
+        sec.classList.add('opacity-0', 'pointer-events-none');
+        sec.classList.remove('opacity-100', 'pointer-events-auto');
+        btn.className = 'act-nav-pill px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all text-on-surface-variant hover:text-white border border-transparent';
+      }
+    });
+
+    chapterLabel.textContent = chapterTitles[actNum];
+
+    if (actNum === 2) {
+      ambience.update(0, 0, false);
+      runAstralIntro();
+      if (!isMediaPlaying) {
+        if (carouselIndex !== 0) flickToCard(0);
+        playCurrentSong();
+      }
+    } else if (actNum === 4) {
+      runFlickCardsIntro();
+      if (!isMediaPlaying) {
+        playCurrentSong();
+      }
+    } else if (actNum === 5) {
+      runFinalIntro();
+      if (!isMediaPlaying) {
+        playCurrentSong();
+      }
+    } else if (actNum === 1) {
+      if (isMediaPlaying) pauseCurrentSong();
+    }
+  }
+
+  document.querySelectorAll('.act-nav-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = parseInt(btn.getAttribute('data-target-act'), 10);
+      jumpToAct(target);
+    });
+  });
+
+  // ==========================================
+  // ACTO 2: ANIMACIÓN DE LA CONSTELACIÓN & TARJETAS CENTRADAS
+  // ==========================================
+  let astralTimeline = null;
+  function runAstralIntro() {
+    if (astralTimeline) astralTimeline.kill();
+
+    const lines = document.querySelectorAll('#astral-svg .c-line');
+    const stars = document.querySelectorAll('#astral-svg .c-star');
+    const antaresPulse = document.querySelector('#astral-svg .antares-pulse');
+    const items = document.querySelectorAll('.astral-item');
+    const svg = document.getElementById('astral-svg');
+
+    gsap.set(lines, { strokeDashoffset: 1 });
+    gsap.set(stars, { scale: 0, transformOrigin: 'center center' });
+    if (antaresPulse) gsap.set(antaresPulse, { scale: 0, transformOrigin: 'center center' });
+    gsap.set(items, { opacity: 0, y: 22 });
+    gsap.set(svg, { opacity: 0.95, scale: 1.05, transformOrigin: 'center center' });
+
+    astralTimeline = gsap.timeline();
+
+    // 1. Dibuja las líneas de la constelación
+    astralTimeline.to(lines, {
+      strokeDashoffset: 0,
+      duration: 1.3,
+      stagger: 0.22,
+      ease: 'power2.inOut'
+    }, 0);
+
+    // 2. Enciende las estrellas estelares con pop
+    astralTimeline.to(stars, {
+      scale: 1,
+      duration: 0.45,
+      stagger: 0.08,
+      ease: 'back.out(2)'
+    }, 0.2);
+
+    // 3. Antares resplandece majestuosa
+    if (antaresPulse) {
+      astralTimeline.to(antaresPulse, {
+        scale: 1,
+        duration: 0.7,
+        ease: 'elastic.out(1, 0.5)'
+      }, 1.1);
+    }
+
+    // 4. Se atenúa sutilmente la constelación y emergen centradas las tarjetas
+    astralTimeline.to(svg, {
+      opacity: 0.32,
+      scale: 1,
+      duration: 0.85,
+      ease: 'power2.out'
+    }, 1.4);
+
+    astralTimeline.to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.12,
+      ease: 'power2.out'
+    }, 1.5);
+  }
+
+  // ==========================================
+  // ACTO 3: LÍNEA DE TIEMPO INTERACTIVA DE ALMAS ILUSTRES
+  // ==========================================
+  const celestialSouls = [
+    {
+      year: '1755',
+      name: 'Marie Antoinette',
+      role: 'Reina de Francia',
+      desc: 'Elegancia eterna, porte aristocrático y una presencia visual que trasciende los siglos.',
+      img: 'assets/scenes/soul_marie.jpg',
+      icon: 'workspace_premium'
+    },
+    {
+      year: '1906',
+      name: 'Luchino Visconti',
+      role: 'Director de Cine & Ópera',
+      desc: 'Maestro de la belleza visual, atmósferas poéticas y una profunda sensibilidad dramática.',
+      img: 'assets/scenes/soul_visconti.jpg',
+      icon: 'movie'
+    },
+    {
+      year: '1911',
+      name: 'Odysseas Elytis',
+      role: 'Poeta • Nobel de Literatura',
+      desc: 'Cantor del mar Egeo, de la luz mediterránea y de la pureza de un espíritu libre y noble.',
+      img: 'assets/scenes/soul_elytis.jpg',
+      icon: 'menu_book'
+    },
+    {
+      year: '1961',
+      name: 'k.d. lang',
+      role: 'Cantante & Compositora',
+      desc: 'Voz de oro etérea, calidez interpretativa inigualable y una autenticidad cautivadora.',
+      img: 'assets/scenes/soul_kdlang.jpg',
+      icon: 'mic'
+    },
+    {
+      year: '1966',
+      name: 'David Schwimmer',
+      role: 'Actor & Director',
+      desc: 'Empatía entrañable, ternura humana y risas compartidas por generaciones enteras.',
+      img: 'assets/scenes/soul_schwimmer.jpg',
+      icon: 'sentiment_very_satisfied'
+    }
+  ];
+
+  let currentSoulIndex = 0;
+  const soulsTrack = document.getElementById('souls-track');
+  const soulsWrap = document.getElementById('souls-wrap');
+  const soulImg = document.getElementById('soul-img');
+  const soulYearChip = document.getElementById('soul-year-chip');
+  const soulIcon = document.getElementById('soul-icon');
+  const soulRole = document.getElementById('soul-role');
+  const soulName = document.getElementById('soul-name');
+  const soulDesc = document.getElementById('soul-desc');
+  const soulDetail = document.getElementById('soul-detail');
+
+  function initSoulsTimeline() {
+    soulsTrack.innerHTML = '';
+    const nodeWidth = 104;
+    const totalWidth = celestialSouls.length * nodeWidth;
+
+    const line = document.createElement('div');
+    line.className = 'souls-line';
+    line.style.width = `${totalWidth - nodeWidth}px`;
+    line.style.left = `${nodeWidth / 2}px`;
+    soulsTrack.appendChild(line);
+
+    const fill = document.createElement('div');
+    fill.className = 'souls-fill';
+    fill.id = 'souls-fill-bar';
+    fill.style.left = `${nodeWidth / 2}px`;
+    soulsTrack.appendChild(fill);
+
+    celestialSouls.forEach((soul, i) => {
+      const node = document.createElement('button');
+      node.type = 'button';
+      node.className = 'soul-node' + (i === 0 ? ' is-active' : '');
+      node.id = `soul-node-${i}`;
+      node.setAttribute('aria-label', `${soul.name} (${soul.year})`);
+      node.innerHTML = `
+        <span class="soul-avatar"><img src="${soul.img}" alt="${soul.name}"/></span>
+        <span class="soul-year">${soul.year}</span>
+      `;
+      node.addEventListener('click', () => selectSoul(i));
+      soulsTrack.appendChild(node);
+    });
+
+    document.getElementById('souls-prev').addEventListener('click', () => {
+      selectSoul((currentSoulIndex - 1 + celestialSouls.length) % celestialSouls.length);
+    });
+    document.getElementById('souls-next').addEventListener('click', () => {
+      selectSoul((currentSoulIndex + 1) % celestialSouls.length);
+    });
+
+    // Touch swipe en la línea de tiempo
+    let soulTouchX = 0;
+    soulsWrap.addEventListener('touchstart', (e) => { soulTouchX = e.touches[0].clientX; }, { passive: true });
+    soulsWrap.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - soulTouchX;
+      if (Math.abs(dx) > 35) {
+        if (dx < 0) selectSoul((currentSoulIndex + 1) % celestialSouls.length);
+        else selectSoul((currentSoulIndex - 1 + celestialSouls.length) % celestialSouls.length);
+      }
+    }, { passive: true });
+
+    updateSoulUI(0, false);
+  }
+
+  function selectSoul(idx) {
+    if (idx === currentSoulIndex) return;
+    currentSoulIndex = idx;
+    updateSoulUI(idx, true);
+  }
+
+  function updateSoulUI(idx, animate = true) {
+    const soul = celestialSouls[idx];
+    const nodeWidth = 104;
+    const fillBar = document.getElementById('souls-fill-bar');
+
+    document.querySelectorAll('.soul-node').forEach((n, i) => {
+      n.classList.toggle('is-active', i === idx);
+      n.classList.toggle('is-passed', i < idx);
+    });
+
+    if (fillBar) {
+      fillBar.style.width = `${idx * nodeWidth}px`;
+    }
+
+    // Centrar suavemente el nodo en la vista
+    const wrapWidth = soulsWrap.clientWidth || 340;
+    const targetX = Math.min(0, Math.max(-(celestialSouls.length * nodeWidth - wrapWidth), (wrapWidth / 2) - (idx * nodeWidth + nodeWidth / 2)));
+    gsap.to(soulsTrack, { x: targetX, duration: 0.45, ease: "power2.out" });
+
+    // Actualizar detalle con sutil fade
+    if (animate) {
+      gsap.fromTo(soulDetail, { opacity: 0.4, y: 6 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" });
+    }
+
+    soulImg.src = soul.img;
+    soulYearChip.textContent = soul.year;
+    soulIcon.textContent = soul.icon;
+    soulRole.textContent = soul.role;
+    soulName.textContent = soul.name;
+    soulDesc.textContent = soul.desc;
+  }
+
+  initSoulsTimeline();
+
+  // ==========================================
+  // ACTO 5: FINAL — NUESTRA AMISTAD & CISNES
+  // ==========================================
+  const finalScene1 = document.getElementById('final-scene-1');
+  const finalScene2 = document.getElementById('final-scene-2');
+  const btnFinalContinue = document.getElementById('btn-final-continue');
+  const btnFinalBack = document.getElementById('btn-final-back');
+  const btnFinalRestart = document.getElementById('btn-final-restart');
+  const finalScrimA = document.getElementById('final-scrim-a');
+
+  btnFinalContinue.addEventListener('click', () => {
+    gsap.to(finalScene1, {
+      opacity: 0,
+      scale: 0.96,
+      duration: 0.5,
+      ease: "power2.inOut",
+      onComplete: () => {
+        finalScene1.style.pointerEvents = 'none';
+        finalScene2.classList.remove('opacity-0', 'pointer-events-none');
+        finalScene2.classList.add('opacity-100', 'pointer-events-auto');
+
+        // Suaviza el velo para ver nítidos los 2 cisnes
+        gsap.to(finalScrimA, { opacity: 0.35, duration: 1.0 });
+
+        gsap.fromTo('.f2-item',
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.18, ease: "power2.out" }
+        );
+      }
+    });
+  });
+
+  btnFinalBack.addEventListener('click', () => {
+    gsap.to(finalScene2, {
+      opacity: 0,
+      duration: 0.4,
+      onComplete: () => {
+        finalScene2.classList.add('opacity-0', 'pointer-events-none');
+        finalScene2.classList.remove('opacity-100', 'pointer-events-auto');
+        finalScene1.style.pointerEvents = 'auto';
+
+        gsap.to(finalScrimA, { opacity: 1.0, duration: 0.7 });
+
+        gsap.to(finalScene1, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          ease: "power2.out"
+        });
+      }
+    });
+  });
+
+  btnFinalRestart.addEventListener('click', () => {
+    jumpToAct(1);
+    currentTime = 0;
+    isPlaying = true;
+    playPauseIcon.textContent = 'pause';
+    lastTimestamp = performance.now();
+    renderPlaybackState();
+  });
+
+  function runFinalIntro() {
+    finalScene1.style.opacity = '1';
+    finalScene1.style.transform = 'none';
+    finalScene1.style.pointerEvents = 'auto';
+    finalScene2.classList.add('opacity-0', 'pointer-events-none');
+    finalScene2.classList.remove('opacity-100', 'pointer-events-auto');
+    finalScrimA.style.opacity = '1';
+
+    gsap.fromTo('.f1-item',
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power2.out" }
+    );
+  }
+
+  // ==========================================
+  // ACTO 1: REVERIE — RECORRIDO WEBGL POR LA PANTERA
+  // ==========================================
+  const ACT1_DURATION = 54;
+  const TOTAL_DURATION = ACT1_DURATION;
+  let currentTime = 0;
+  let isPlaying = false;
+  let animFrame = null;
+  let lastTimestamp = performance.now();
+
+  const pantherImg = document.getElementById('panther-hero-img');
+  const timelineBar = document.getElementById('timeline-bar');
+  const timeCurrentLabel = document.getElementById('time-current');
+  const playPauseIcon = document.getElementById('play-pause-icon');
+  const hudEl = document.getElementById('reverie-hud');
+  const hudZoom = document.getElementById('hud-zoom');
+  const hudFstop = document.getElementById('hud-fstop');
+  const hudFocusDot = document.getElementById('hud-focus-dot');
+  const hudFocusLabel = document.getElementById('hud-focus-label');
+
+  function formatTime(seconds) {
+    const s = Math.floor(seconds);
+    const mins = Math.floor(s / 60);
+    const secs = s % 60;
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+  document.getElementById('time-duration').textContent = formatTime(TOTAL_DURATION);
+
+  const clamp01 = v => Math.min(1, Math.max(0, v));
+  const smoothstep = (a, b, v) => { const x = clamp01((v - a) / (b - a)); return x * x * (3 - 2 * x); };
+  const smootherstep = v => { const x = clamp01(v); return x * x * x * (x * (x * 6 - 15) + 10); };
+
+  const SCENE = { eye: [0.5226, 0.191], eyeR: 0.0075 };
+  const OPEN = { x: 0.5, y: 0.5, z: 1, r: 0, f: 0.5, a: 0.012, s: 0 };
+
+  const CAMERA_KEYS = [
+    { t: 0.0,  x: 0.500,  y: 0.500, z: 1.00, r: 0.000,  f: 0.50, a: 0.012, s: 0.0 },
+    { t: 3.5,  x: 0.500,  y: 0.515, z: 1.10, r: 0.000,  f: 0.50, a: 0.016, s: 0.3 },
+    { t: 8.0,  x: 0.170,  y: 0.840, z: 4.20, r: -0.020, f: 0.90, a: 0.070, s: 1.0 },
+    { t: 11.5, x: 0.400,  y: 0.860, z: 5.00, r: -0.008, f: 0.92, a: 0.080, s: 1.0 },
+    { t: 14.5, x: 0.570,  y: 0.830, z: 5.40, r: 0.006,  f: 0.88, a: 0.080, s: 1.0 },
+    { t: 18.0, x: 0.790,  y: 0.700, z: 5.60, r: 0.018,  f: 0.74, a: 0.080, s: 1.0 },
+    { t: 21.0, x: 0.740,  y: 0.590, z: 4.80, r: 0.012,  f: 0.66, a: 0.075, s: 1.0 },
+    { t: 24.5, x: 0.600,  y: 0.500, z: 3.60, r: 0.000,  f: 0.50, a: 0.070, s: 1.0 },
+    { t: 27.5, x: 0.500,  y: 0.390, z: 4.60, r: -0.010, f: 0.52, a: 0.060, s: 1.0 },
+    { t: 30.5, x: 0.560,  y: 0.285, z: 6.00, r: -0.004, f: 0.50, a: 0.070, s: 0.8 },
+    { t: 33.5, x: 0.5226, y: 0.191, z: 7.00, r: 0.000,  f: 0.48, a: 0.080, s: 0.6 },
+    { t: 37.0, x: 0.820,  y: 0.165, z: 3.80, r: 0.015,  f: 0.10, a: 0.065, s: 0.8 },
+    { t: 40.0, x: 0.5226, y: 0.191, z: 7.60, r: 0.000,  f: 0.48, a: 0.075, s: 0.4 },
+    { t: 41.5, x: 0.5226, y: 0.191, z: 9.00, r: 0.000,  f: 0.48, a: 0.070, s: 0.0 }
+  ];
+  const DIVE = { start: 41.5, end: 46.2, zEnd: 172 };
+  const FLIP = { start: 46.4, end: 49.0 };
+
+  const CHAPTERS = [
+    { t: 0.0,  name: 'Obertura' },
+    { t: 7.6,  name: 'I · Umbral de Tulipanes' },
+    { t: 15.0, name: 'II · Seda y Satén' },
+    { t: 22.0, name: 'III · Terciopelo Nocturno' },
+    { t: 29.0, name: 'IV · La Mirada' },
+    { t: 35.2, name: 'V · Horizonte Lila' },
+    { t: 40.6, name: 'VI · El Reflejo' },
+    { t: 49.0, name: 'Regreso' }
+  ];
+  const CAPTIONS = [
+    { el: 'cap-0', from: 0.8,  to: 7.0 },
+    { el: 'cap-1', from: 8.4,  to: 14.4 },
+    { el: 'cap-2', from: 15.6, to: 21.4 },
+    { el: 'cap-3', from: 22.6, to: 28.4 },
+    { el: 'cap-4', from: 29.6, to: 34.8 },
+    { el: 'cap-5', from: 35.8, to: 40.0 },
+    { el: 'cap-6', from: 41.2, to: 46.0 },
+    { el: 'sub-1-3', from: 49.6, to: Infinity }
+  ];
+
+  function hermite(keys, t, ch, useLog) {
+    const n = keys.length;
+    const val = k => (useLog ? Math.log(k[ch]) : k[ch]);
+    if (t <= keys[0].t) return val(keys[0]);
+    if (t >= keys[n - 1].t) return val(keys[n - 1]);
+    let i = 0;
+    while (t > keys[i + 1].t) i++;
+    const k0 = keys[i], k1 = keys[i + 1];
+    const h = k1.t - k0.t, u = (t - k0.t) / h;
+    const p0 = val(k0), p1 = val(k1);
+    const m0 = i > 0 ? (p1 - val(keys[i - 1])) / (k1.t - keys[i - 1].t) * h : 0;
+    const m1 = i + 2 < n ? (val(keys[i + 2]) - p0) / (keys[i + 2].t - k0.t) * h : 0;
+    const u2 = u * u, u3 = u2 * u;
+    return (2 * u3 - 3 * u2 + 1) * p0 + (u3 - 2 * u2 + u) * m0 + (-2 * u3 + 3 * u2) * p1 + (u3 - u2) * m1;
+  }
+
+  function cameraAt(t) {
+    let cam;
+    if (t >= FLIP.end) {
+      cam = { ...OPEN };
+    } else if (t <= DIVE.start) {
+      cam = {
+        x: hermite(CAMERA_KEYS, t, 'x'),
+        y: hermite(CAMERA_KEYS, t, 'y'),
+        z: Math.exp(hermite(CAMERA_KEYS, t, 'z', true)),
+        r: hermite(CAMERA_KEYS, t, 'r'),
+        f: clamp01(hermite(CAMERA_KEYS, t, 'f')),
+        a: Math.max(0, hermite(CAMERA_KEYS, t, 'a')),
+        s: clamp01(hermite(CAMERA_KEYS, t, 's'))
+      };
+    } else {
+      const last = CAMERA_KEYS[CAMERA_KEYS.length - 1];
+      const u = smootherstep((t - DIVE.start) / (DIVE.end - DIVE.start));
+      cam = { ...last, z: last.z * Math.pow(DIVE.zEnd / last.z, u), a: last.a + u * 0.02 };
+    }
+    const reflecting = t < FLIP.end;
+    cam.t = t;
+    cam.reflect = reflecting ? smoothstep(39.4, 42.0, t) : 0;
+    cam.tint = 1 - smoothstep(44.0, DIVE.end, t);
+    cam.bulge = 1 - smoothstep(FLIP.start, FLIP.end - 0.3, t);
+    cam.flip = smoothstep(FLIP.start, FLIP.end, t);
+    return cam;
+  }
+
+  const Reverie = (() => {
+    const canvas = document.getElementById('reverie-canvas');
+    let gl = null, U = {}, imgAsp = 928 / 1152, ok = false, failed = false;
+    const PAR_K = 0.12;
+
+    const VS = 'attribute vec2 a_pos; void main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }';
+    const FS = `
+      precision highp float;
+      uniform sampler2D u_img;
+      uniform sampler2D u_depth;
+      uniform vec2 u_res;
+      uniform float u_imgAsp;
+      uniform vec2 u_center;
+      uniform float u_zoom;
+      uniform float u_roll;
+      uniform vec2 u_par;
+      uniform float u_focus;
+      uniform float u_aperture;
+      uniform float u_openFocus;
+      uniform float u_openAperture;
+      uniform float u_time;
+      uniform float u_reflect;
+      uniform vec2 u_eyeS;
+      uniform float u_irisR;
+      uniform float u_k;
+      uniform float u_bulge;
+      uniform float u_tint;
+      uniform float u_flip;
+      uniform float u_fade;
+
+      vec2 rot(vec2 p, float a){ float c = cos(a), s = sin(a); return vec2(c*p.x - s*p.y, s*p.x + c*p.y); }
+      float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+      float vnoise(vec2 p){
+        vec2 i = floor(p), f = fract(p); f = f*f*(3.0 - 2.0*f);
+        float a = hash(i), b = hash(i + vec2(1.0, 0.0)), c = hash(i + vec2(0.0, 1.0)), d = hash(i + vec2(1.0, 1.0));
+        return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+      }
+
+      vec3 sampleDisc(vec2 uv, float blurS, float zoom){
+        float rUV = blurS / zoom;
+        float bias = clamp(log2(1.0 + blurS * u_res.y * 0.25), 0.0, 3.0);
+        vec3 acc = texture2D(u_img, uv, bias * 0.5).rgb;
+        for (int i = 0; i < 16; i++){
+          float fi = float(i);
+          float rr = sqrt((fi + 0.5) / 16.0) * rUV;
+          float a = fi * 2.39996323 + 0.7;
+          vec2 o = vec2(cos(a), sin(a)) * rr;
+          o.x /= u_imgAsp;
+          acc += texture2D(u_img, uv + o, bias).rgb;
+        }
+        return acc / 17.0;
+      }
+
+      vec3 ambient(vec2 uv, float edgeDist){
+        vec3 c = texture2D(u_img, clamp(uv, 0.0, 1.0), 7.0).rgb;
+        c = mix(c, vec3(0.055, 0.04, 0.075), 0.45) * 0.62;
+        c *= mix(0.45, 1.0, smoothstep(0.0, 0.06, edgeDist));
+        c *= exp(-max(edgeDist, 0.0) * 0.9);
+        return c;
+      }
+
+      void main(){
+        vec2 p = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;
+        vec2 q = rot(p, u_roll) / u_zoom;
+        vec2 uvMain = u_center + vec2(q.x / u_imgAsp, -q.y);
+
+        vec2 dv = p - u_eyeS;
+        float r = length(dv) / max(u_irisR, 1e-5);
+        float inIris = step(0.001, u_reflect) * (1.0 - step(1.0, r));
+        vec2 pr = dv / max(u_k, 1e-5);
+        float rc = min(r, 1.0);
+        pr *= 1.0 + u_bulge * (rc * rc * 0.6 - 0.18);
+        float distC = length(p);
+        float front = u_flip * 1.6;
+        float waveOn = step(0.0001, u_flip) * (1.0 - smoothstep(0.85, 1.0, u_flip));
+        float wave = exp(-abs(distC - front) * 14.0) * waveOn;
+        pr += (p / max(distC, 1e-4)) * sin((distC - front) * 64.0) * 0.012 * wave;
+        float righted = 1.0 - step(front, distC);
+        pr.x *= mix(-1.0, 1.0, righted);
+        vec2 uvRefl = vec2(0.5) + vec2(pr.x / u_imgAsp, -pr.y);
+
+        float useR = inIris;
+        vec2 uv = mix(uvMain, uvRefl, useR);
+        float zU = mix(u_zoom, 1.0, useR);
+        vec2 par = u_par * (1.0 - useR);
+        float fU = mix(u_focus, u_openFocus, useR);
+        float aU = mix(u_aperture, u_openAperture, useR);
+
+        float d0 = texture2D(u_depth, clamp(uv, 0.0, 1.0)).r;
+        vec2 uvP = uv + par * (d0 - fU);
+        float d = texture2D(u_depth, clamp(uvP, 0.0, 1.0)).r;
+        float blurS = min(abs(d - fU) * aU, 0.045);
+        vec3 col = sampleDisc(uvP, blurS, zU);
+
+        float ex = (abs(uvP.x - 0.5) - 0.5) * u_imgAsp;
+        float ey = abs(uvP.y - 0.5) - 0.5;
+        float edgeDist = max(ex, ey);
+        float soft = 1.5 / (u_res.y * zU);
+        float paintMask = 1.0 - smoothstep(-soft, soft, edgeDist);
+        col = mix(ambient(uvP, edgeDist), col, paintMask);
+
+        float near = smoothstep(3.2, 7.0, zU) * (1.0 - smoothstep(14.0, 32.0, zU)) * paintMask;
+        vec2 ip = uvP * vec2(u_imgAsp, 1.0);
+        float weave = sin(ip.x * 2400.0) * sin(ip.y * 2400.0);
+        vec2 bp = rot(ip, 0.6) * vec2(260.0, 70.0);
+        float brush = vnoise(bp) * 0.6 + vnoise(bp * 2.3) * 0.4;
+        col *= 1.0 + (weave * 0.03 + (brush - 0.5) * 0.09) * near;
+
+        if (u_reflect > 0.001) {
+          vec3 irisCol = vec3(0.72, 0.66, 0.90);
+          float irisVis = u_reflect * u_tint;
+          float dm = texture2D(u_depth, clamp(uvMain, 0.0, 1.0)).r;
+          vec3 painted = texture2D(u_img, uvMain + u_par * (dm - u_focus)).rgb;
+          vec3 tinted = mix(col, col * irisCol * 1.05 + irisCol * 0.04, u_tint * 0.7);
+          col = mix(col, mix(painted, tinted, u_reflect), inIris);
+          float ring = smoothstep(0.78, 1.0, r) * (1.0 - smoothstep(1.0, 1.14, r));
+          col *= 1.0 - ring * 0.7 * irisVis;
+          vec2 sp = dv / max(u_irisR, 1e-5) - vec2(-0.36, 0.38);
+          col += vec3(1.0, 0.97, 1.0) * exp(-dot(sp, sp) * 34.0) * 0.5 * irisVis * inIris;
+          col += vec3(0.83, 0.64, 0.35) * wave * 0.22 * inIris;
+        }
+
+        col = pow(max(col, 0.0), vec3(0.96));
+        col += vec3(0.020, 0.010, 0.032) * (1.0 - col);
+        float vig = smoothstep(1.35, 0.25, length(p * vec2(0.62, 1.0)));
+        col *= mix(0.72, 1.0, vig);
+        col += (hash(gl_FragCoord.xy + fract(u_time * 7.13) * 97.0) - 0.5) * 0.028;
+        gl_FragColor = vec4(col * u_fade, 1.0);
+      }
+    `;
+
+    function compile(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+      return s;
+    }
+
+    function buildDepth() {
+      const S = 256;
+      const raw = document.createElement('canvas');
+      raw.width = raw.height = S;
+      const c = raw.getContext('2d');
+      const gray = (v, a = 1) => { const g = Math.round(clamp01(v) * 255); return `rgba(${g},${g},${g},${a})`; };
+      const HORIZON = 0.205;
+      for (let y = 0; y < S; y++) {
+        const v = (y + 0.5) / S;
+        const d = v < HORIZON ? 0.02 + v * 0.25 : 0.12 + 0.88 * Math.pow((v - HORIZON) / (1 - HORIZON), 0.9);
+        c.fillStyle = gray(d);
+        c.fillRect(0, y, S, 1);
+      }
+      c.globalCompositeOperation = 'lighten';
+      const ell = (x, y, rx, ry, v) => { c.fillStyle = gray(v); c.beginPath(); c.ellipse(x * S, y * S, rx * S, ry * S, 0, 0, Math.PI * 2); c.fill(); };
+      ell(0.49, 0.205, 0.13, 0.11, 0.50);
+      ell(0.585, 0.255, 0.065, 0.055, 0.51);
+      ell(0.405, 0.12, 0.04, 0.035, 0.49);
+      ell(0.565, 0.125, 0.03, 0.03, 0.49);
+      c.fillStyle = gray(0.50);
+      c.beginPath();
+      [[0.36, 0.22], [0.30, 0.32], [0.275, 0.45], [0.29, 0.62], [0.36, 0.75], [0.55, 0.76], [0.66, 0.62], [0.73, 0.52], [0.68, 0.40], [0.60, 0.33], [0.52, 0.32]]
+        .forEach(([x, y], i) => (i ? c.lineTo(x * S, y * S) : c.moveTo(x * S, y * S)));
+      c.closePath();
+      c.fill();
+      ell(0.47, 0.45, 0.15, 0.16, 0.53);
+
+      const blob = (x, y, r, v) => {
+        const g = c.createRadialGradient(x * S, y * S, 0, x * S, y * S, r * S);
+        g.addColorStop(0, gray(v)); g.addColorStop(0.65, gray(v)); g.addColorStop(1, gray(v, 0));
+        c.fillStyle = g; c.fillRect(0, 0, S, S);
+      };
+      blob(0.375, 0.555, 0.05, 0.62);
+      blob(0.27, 0.595, 0.045, 0.62);
+      blob(0.74, 0.60, 0.06, 0.66);
+      blob(0.79, 0.70, 0.085, 0.74);
+      blob(0.61, 0.79, 0.06, 0.80);
+      blob(0.57, 0.84, 0.10, 0.88);
+      blob(0.85, 0.86, 0.09, 0.92);
+      blob(0.15, 0.82, 0.09, 0.88);
+      const out = document.createElement('canvas');
+      out.width = out.height = S;
+      const o = out.getContext('2d');
+      o.filter = 'blur(3px)';
+      o.drawImage(raw, 0, 0);
+      return out;
+    }
+
+    function makeTexture(unit, source, mip) {
+      gl.activeTexture(gl.TEXTURE0 + unit);
+      const tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      if (mip) {
+        gl.generateMipmap(gl.TEXTURE_2D);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+        const aniso = gl.getExtension('EXT_texture_filter_anisotropic');
+        if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, 4);
+      } else {
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      }
+      return tex;
+    }
+
+    function loadImg(src) {
+      return new Promise((resolve, reject) => {
+        const im = new Image();
+        if (!src.startsWith('data:')) im.crossOrigin = 'anonymous';
+        im.onload = () => resolve(im);
+        im.onerror = reject;
+        im.src = src;
+      });
+    }
+
+    async function init(sources) {
+      try {
+        gl = canvas.getContext('webgl', { antialias: false, alpha: false, premultipliedAlpha: false, powerPreference: 'high-performance' });
+        if (!gl) throw new Error('WebGL no disponible');
+        const prog = gl.createProgram();
+        gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+        gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+        gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+        gl.useProgram(prog);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+        const loc = gl.getAttribLocation(prog, 'a_pos');
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+        ['u_img', 'u_depth', 'u_res', 'u_imgAsp', 'u_center', 'u_zoom', 'u_roll', 'u_par', 'u_focus', 'u_aperture',
+          'u_openFocus', 'u_openAperture', 'u_time', 'u_reflect', 'u_eyeS', 'u_irisR', 'u_k', 'u_bulge', 'u_tint', 'u_flip', 'u_fade']
+          .forEach(n => { U[n] = gl.getUniformLocation(prog, n); });
+
+        makeTexture(1, buildDepth(), false);
+        gl.uniform1i(U.u_depth, 1);
+
+        const maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+        let uploaded = false;
+        for (const src of sources) {
+          try {
+            const im = await loadImg(src);
+            const size = (Math.max(im.naturalWidth, im.naturalHeight) > 1024 && maxTex >= 2048) ? 2048 : 1024;
+            const pot = document.createElement('canvas');
+            pot.width = pot.height = size;
+            pot.getContext('2d').drawImage(im, 0, 0, size, size);
+            makeTexture(0, pot, true);
+            imgAsp = im.naturalWidth / im.naturalHeight;
+            uploaded = true;
+            break;
+          } catch (e) {
+            console.warn('Reverie: fuente de imagen no disponible, probando la siguiente…', e);
+          }
+        }
+        if (!uploaded) throw new Error('No se pudo cargar la pintura');
+        gl.uniform1i(U.u_img, 0);
+        ok = true;
+      } catch (e) {
+        console.warn('Reverie: usando modo de respaldo sin WebGL', e);
+        failed = true;
+        canvas.style.display = 'none';
+        pantherImg.classList.remove('hidden');
+      }
+    }
+
+    function draw(cam, nowSec) {
+      if (!ok) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.round(canvas.clientWidth * dpr), h = Math.round(canvas.clientHeight * dpr);
+      if (!w || !h) return;
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+      gl.viewport(0, 0, w, h);
+
+      const sz = Math.sqrt(cam.z);
+      const parX = (cam.x - 0.5) * PAR_K / sz + cam.s * Math.sin(cam.t * 0.42) * 0.014 / sz;
+      const parY = (cam.y - 0.5) * PAR_K / sz + cam.s * Math.cos(cam.t * 0.33) * 0.010 / sz;
+
+      const qx = (SCENE.eye[0] - cam.x) * imgAsp * cam.z;
+      const qy = -(SCENE.eye[1] - cam.y) * cam.z;
+      const cr = Math.cos(-cam.r), sr = Math.sin(-cam.r);
+      const irisR = SCENE.eyeR * cam.z;
+      const rFull = 0.5 * Math.hypot(w / h, 1) + 0.03;
+
+      gl.uniform2f(U.u_res, w, h);
+      gl.uniform1f(U.u_imgAsp, imgAsp);
+      gl.uniform2f(U.u_center, cam.x, cam.y);
+      gl.uniform1f(U.u_zoom, cam.z);
+      gl.uniform1f(U.u_roll, cam.r);
+      gl.uniform2f(U.u_par, parX, parY);
+      gl.uniform1f(U.u_focus, cam.f);
+      gl.uniform1f(U.u_aperture, cam.a);
+      gl.uniform1f(U.u_openFocus, OPEN.f);
+      gl.uniform1f(U.u_openAperture, OPEN.a);
+      gl.uniform1f(U.u_time, nowSec);
+      gl.uniform1f(U.u_reflect, cam.reflect);
+      gl.uniform2f(U.u_eyeS, cr * qx - sr * qy, sr * qx + cr * qy);
+      gl.uniform1f(U.u_irisR, irisR);
+      gl.uniform1f(U.u_k, Math.min(1, irisR / rFull));
+      gl.uniform1f(U.u_bulge, cam.bulge);
+      gl.uniform1f(U.u_tint, cam.tint);
+      gl.uniform1f(U.u_flip, cam.flip);
+      gl.uniform1f(U.u_fade, smoothstep(0, 1.4, cam.t));
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+
+    return {
+      init, draw,
+      get ok() { return ok; },
+      get failed() { return failed; }
+    };
+  })();
+
+  function drawFallback(cam) {
+    const s = Math.min(4, Math.max(1, cam.z / 2.4));
+    pantherImg.style.transformOrigin = `${cam.x * 100}% ${cam.y * 100}%`;
+    pantherImg.style.transform = `scale(${s})`;
+  }
+
+  class ReverieAmbience {
+    constructor(synth) { this.synth = synth; this.ready = false; }
+
+    init() {
+      if (this.ready) return;
+      this.synth.init();
+      const ctx = this.ctx = this.synth.ctx;
+      const out = this.synth.masterGain;
+      const len = ctx.sampleRate * 3;
+      const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      let last = 0;
+      for (let i = 0; i < len; i++) { last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02; data[i] = last * 3.2; }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buf;
+      noise.loop = true;
+
+      this.windFilter = ctx.createBiquadFilter();
+      this.windFilter.type = 'bandpass';
+      this.windFilter.frequency.value = 380;
+      this.windFilter.Q.value = 0.8;
+      this.windGain = ctx.createGain();
+      this.windGain.gain.value = 0;
+      noise.connect(this.windFilter).connect(this.windGain).connect(out);
+
+      this.whooshFilter = ctx.createBiquadFilter();
+      this.whooshFilter.type = 'lowpass';
+      this.whooshFilter.frequency.value = 160;
+      this.whooshGain = ctx.createGain();
+      this.whooshGain.gain.value = 0;
+      noise.connect(this.whooshFilter).connect(this.whooshGain).connect(out);
+
+      const sub = ctx.createOscillator();
+      sub.type = 'sine';
+      sub.frequency.value = 55;
+      this.subGain = ctx.createGain();
+      this.subGain.gain.value = 0;
+      sub.connect(this.subGain).connect(out);
+
+      this.echo = ctx.createDelay(1.5);
+      this.echo.delayTime.value = 0.34;
+      const fb = ctx.createGain(); fb.gain.value = 0.42;
+      const wet = ctx.createGain(); wet.gain.value = 0.55;
+      this.echo.connect(fb).connect(this.echo);
+      this.echo.connect(wet).connect(out);
+
+      noise.start();
+      sub.start();
+      this.ready = true;
+    }
+
+    bell(freq, when, vol = 0.05, dur = 3.2) {
+      const ctx = this.ctx;
+      const t0 = ctx.currentTime + when;
+      [1, 2.32, 4.25].forEach((m, i) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = freq * m;
+        const v = vol / (i * 1.8 + 1);
+        g.gain.setValueAtTime(0, t0);
+        g.gain.linearRampToValueAtTime(v, t0 + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur / (i + 1));
+        o.connect(g);
+        g.connect(this.synth.masterGain);
+        g.connect(this.echo);
+        o.start(t0);
+        o.stop(t0 + dur + 0.1);
+      });
+    }
+
+    chime() {
+      if (!this.ready) return;
+      this.bell(1318.51, 0, 0.04);
+      this.bell(1975.53, 0.12, 0.028);
+    }
+
+    crystal() {
+      if (!this.ready) return;
+      [1567.98, 1975.53, 2349.32, 2637.02, 3135.96].forEach((f, i) => this.bell(f, i * 0.11, 0.035, 4.2));
+    }
+
+    update(speed, dive, active) {
+      if (!this.ready) return;
+      const now = this.ctx.currentTime;
+      const s = Math.min(speed, 2.5);
+      this.windGain.gain.setTargetAtTime(active ? 0.028 + s * 0.028 : 0, now, 0.35);
+      this.windFilter.frequency.setTargetAtTime(300 + s * 650, now, 0.4);
+      this.whooshGain.gain.setTargetAtTime(active ? dive * 0.16 : 0, now, 0.2);
+      this.whooshFilter.frequency.setTargetAtTime(140 + dive * 2200, now, 0.2);
+      this.subGain.gain.setTargetAtTime(active ? dive * 0.08 : 0, now, 0.3);
+    }
+  }
+  const ambience = new ReverieAmbience(pianoSynth);
+
+  const capEls = CAPTIONS.map(c => ({ ...c, node: document.getElementById(c.el), on: false }));
+  const wpWrap = document.getElementById('timeline-waypoints');
+  const wpNodes = CHAPTERS.map((ch, i) => {
+    const n = document.createElement('button');
+    n.type = 'button';
+    n.className = 'wp-node';
+    n.id = `wp-node-${i}`;
+    n.title = ch.name;
+    n.setAttribute('aria-label', `Ir a ${ch.name}`);
+    n.style.left = `${(ch.t / TOTAL_DURATION) * 100}%`;
+    n.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentAct !== 1) jumpToAct(1);
+      currentTime = ch.t + 0.01;
+      renderPlaybackState();
+    });
+    wpWrap.appendChild(n);
+    return n;
+  });
+
+  let lastChapterIdx = -1;
+  function chapterIndexAt(t) {
+    let idx = 0;
+    CHAPTERS.forEach((c, i) => { if (t >= c.t) idx = i; });
+    return idx;
+  }
+
+  function updateAct1Overlay(t) {
+    capEls.forEach(c => {
+      const on = t >= c.from && t < c.to;
+      if (on !== c.on) { c.on = on; c.node.classList.toggle('is-on', on); }
+    });
+    hudEl.classList.toggle('is-hidden', t < 4 || t >= FLIP.end);
+    const idx = chapterIndexAt(t);
+    if (idx !== lastChapterIdx) {
+      lastChapterIdx = idx;
+      wpNodes.forEach((n, i) => {
+        n.classList.toggle('is-passed', i < idx);
+        n.classList.toggle('is-active', i === idx);
+      });
+      chapterLabel.textContent = `Acto 1 · ${CHAPTERS[idx].name} • Para Crystal`;
+    }
+  }
+
+  function focusName(f) {
+    if (f < 0.2) return 'Horizonte';
+    if (f < 0.45) return 'Prado';
+    if (f < 0.57) return 'Pantera';
+    if (f < 0.8) return 'Seda violeta';
+    return 'Primer plano';
+  }
+
+  function updateHud(cam) {
+    hudZoom.textContent = `×${cam.z < 10 ? cam.z.toFixed(1) : Math.round(cam.z)}`;
+    hudFstop.textContent = `f/${Math.max(1.2, 8 - cam.a * 85).toFixed(1)}`;
+    hudFocusDot.style.left = `${(1 - cam.f) * 100}%`;
+    hudFocusLabel.textContent = focusName(cam.f);
+  }
+
+  function renderPlaybackState() {
+    timeCurrentLabel.textContent = formatTime(currentTime);
+    timelineBar.style.width = `${(currentTime / TOTAL_DURATION) * 100}%`;
+  }
+
+  let lastCam = null;
+  let lastActRendered = 1;
+  function renderFrame(nowSec, dt) {
+    if (currentAct !== 1) {
+      ambience.update(0, 0, false);
+      lastActRendered = currentAct;
+      return;
+    }
+    if (lastActRendered !== 1) { lastChapterIdx = -1; lastActRendered = 1; }
+    const cam = cameraAt(currentTime);
+    if (Reverie.ok) Reverie.draw(cam, nowSec);
+    else if (Reverie.failed) drawFallback(cam);
+    updateAct1Overlay(currentTime);
+    updateHud(cam);
+    let speed = 0;
+    if (lastCam && dt > 0 && isPlaying) {
+      speed = Math.hypot((cam.x - lastCam.x) * 0.8, cam.y - lastCam.y) * cam.z / dt
+        + Math.abs(Math.log(cam.z / lastCam.z)) / dt * 0.25;
+    }
+    const dive = smoothstep(DIVE.start, DIVE.end, currentTime) * (1 - smoothstep(DIVE.end, FLIP.end, currentTime));
+    ambience.update(speed, dive, isPlaying);
+    lastCam = cam;
+  }
+
+  function videoLoop(timestamp) {
+    const delta = Math.min(0.1, Math.max(0, (timestamp - lastTimestamp) / 1000));
+    lastTimestamp = timestamp;
+
+    if (isPlaying) {
+      const prev = currentTime;
+      currentTime += delta;
+
+      if (currentTime >= TOTAL_DURATION) {
+        currentTime = TOTAL_DURATION;
+        isPlaying = false;
+        playPauseIcon.textContent = 'play_arrow';
+      }
+
+      if (currentAct === 1) {
+        CHAPTERS.forEach(c => { if (c.t > 0 && prev < c.t && currentTime >= c.t) ambience.chime(); });
+        if (prev < FLIP.start && currentTime >= FLIP.start) ambience.crystal();
+      }
+
+      renderPlaybackState();
+    }
+
+    renderFrame(timestamp / 1000, delta);
+    animFrame = requestAnimationFrame(videoLoop);
+  }
+
+  document.getElementById('btn-replay-reverie').addEventListener('click', () => {
+    currentTime = 0;
+    isPlaying = true;
+    playPauseIcon.textContent = 'pause';
+    lastTimestamp = performance.now();
+    renderPlaybackState();
+  });
+
+  Reverie.init([window.PANTERA_HD_DATA, 'assets/pantera_hd.jpg', pantherImg.getAttribute('src')].filter(Boolean));
+  renderPlaybackState();
+  animFrame = requestAnimationFrame(videoLoop);
+
+  // ==========================================
+  // INICIO DESDE PANTALLA PREVIA
+  // ==========================================
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const btnStartExperience = document.getElementById('btn-start-experience');
+
+  btnStartExperience.addEventListener('click', () => {
+    document.body.classList.add('is-started');
+    const rootEl = document.documentElement;
+    if (!document.fullscreenElement && rootEl.requestFullscreen) {
+      rootEl.requestFullscreen().then(() => {
+        if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(() => {});
+      }).catch(() => {});
+    }
+
+    pianoSynth.startTheme();
+    ambience.init();
+
+    welcomeScreen.classList.add('opacity-0', 'pointer-events-none');
+    setTimeout(() => {
+      welcomeScreen.style.display = 'none';
+    }, 700);
+
+    if (currentTime >= TOTAL_DURATION) currentTime = 0;
+    isPlaying = true;
+    playPauseIcon.textContent = 'pause';
+    lastTimestamp = performance.now();
+  });
+
+  // ==========================================
+  // CONTROLES HUD INFERIOR
+  // ==========================================
+  document.getElementById('btn-play-pause').addEventListener('click', () => {
+    if (!isPlaying && currentTime >= TOTAL_DURATION) currentTime = 0;
+    isPlaying = !isPlaying;
+    playPauseIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
+    lastTimestamp = performance.now();
+  });
+
+  document.getElementById('btn-rewind').addEventListener('click', () => {
+    currentTime = Math.max(0, currentTime - 5);
+    renderPlaybackState();
+  });
+
+  document.getElementById('btn-skip-next').addEventListener('click', () => {
+    const nextAct = currentAct < 5 ? currentAct + 1 : 1;
+    jumpToAct(nextAct);
+  });
+
+  document.getElementById('timeline-container').addEventListener('click', (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickPos = (e.clientX - rect.left) / rect.width;
+    currentTime = clickPos * TOTAL_DURATION;
+    renderPlaybackState();
+  });
+
+  const audioTopBtn = document.getElementById('toggle-audio-top-btn');
+  const audioBottomBtn = document.getElementById('btn-mute-soundscape');
+  const audioIconStatus = document.getElementById('audio-icon-status');
+
+  const toggleSound = () => {
+    const muted = pianoSynth.toggleMute();
+    audioIconStatus.textContent = muted ? 'volume_off' : 'volume_up';
+  };
+
+  audioTopBtn.addEventListener('click', toggleSound);
+  audioBottomBtn.addEventListener('click', toggleSound);
+
+  document.getElementById('btn-toggle-fullscreen').addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  });
+
+  // ==========================================
+  // PÉTALOS FLOTANTES
+  // ==========================================
+  const petalsContainer = document.getElementById('petals-canvas-container');
+  const petalsFinalContainer = document.getElementById('petals-final');
+  const petalColors = ['#e7b8dd', '#b388aa', '#ffd7f4', '#f4d9ff', '#d4a359'];
+
+  function createPetal() {
+    if (currentAct !== 1 && currentAct !== 5) return;
+    if (currentAct === 1 && (currentTime > 40 && currentTime < FLIP.end)) return;
+
+    const targetContainer = currentAct === 5 ? petalsFinalContainer : petalsContainer;
+    if (!targetContainer) return;
+
+    const petal = document.createElement('div');
+    const size = Math.random() * 8 + 5;
+    const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+    const duration = Math.random() * 7 + 7;
+    const left = Math.random() * 100;
+
+    petal.className = 'absolute rounded-full pointer-events-none filter blur-[0.3px]';
+    petal.style.width = `${size}px`;
+    petal.style.height = `${size * 0.75}px`;
+    petal.style.backgroundColor = color;
+    petal.style.left = `${left}%`;
+    petal.style.bottom = '-20px';
+    petal.style.opacity = '0';
+    petal.style.animation = `floatingPetals ${duration}s ease-in-out forwards`;
+    petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    targetContainer.appendChild(petal);
+
+    setTimeout(() => {
+      if (petal.parentNode) petal.parentNode.removeChild(petal);
+    }, duration * 1000);
+  }
+
+  setInterval(createPetal, 520);
+
+  // ==========================================
+  // ESTRELLAS CANVAS
+  // ==========================================
+  const starsCanvas = document.getElementById('stars-canvas');
+  const sCtx = starsCanvas.getContext('2d');
+  let stars = [];
+
+  function resizeCanvas() {
+    starsCanvas.width = window.innerWidth;
+    starsCanvas.height = window.innerHeight;
+    initStars();
+  }
+
+  function initStars() {
+    stars = [];
+    const numStars = Math.floor((starsCanvas.width * starsCanvas.height) / 4500);
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * starsCanvas.width,
+        y: Math.random() * starsCanvas.height,
+        radius: Math.random() * 1.5 + 0.3,
+        alpha: Math.random() * 0.8 + 0.2,
+        speed: Math.random() * 0.02 + 0.005,
+        color: Math.random() > 0.3 ? '#f4d9ff' : (Math.random() > 0.5 ? '#ffd7f4' : '#d4a359')
+      });
+    }
+  }
+
+  function drawStars() {
+    sCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+    for (let i = 0; i < stars.length; i++) {
+      const star = stars[i];
+      star.alpha += star.speed;
+      if (star.alpha > 1 || star.alpha < 0.2) star.speed = -star.speed;
+
+      sCtx.beginPath();
+      sCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      sCtx.fillStyle = star.color;
+      sCtx.globalAlpha = Math.abs(star.alpha);
+      sCtx.fill();
+    }
+    sCtx.globalAlpha = 1.0;
+    requestAnimationFrame(drawStars);
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  requestAnimationFrame(drawStars);
+
+  // ==========================================
+  // VISTA PREVIA DIRECTA MEDIANTE PARÁMETROS URL (?t=X, ?act=Y)
+  // ==========================================
+  (() => {
+    const qs = new URLSearchParams(location.search);
+    if (qs.has('act')) {
+      const targetAct = parseInt(qs.get('act'), 10);
+      welcomeScreen.style.display = 'none';
+      jumpToAct(targetAct);
+      return;
+    }
+    if (!qs.has('t')) return;
+    currentTime = Math.min(TOTAL_DURATION, Math.max(0, parseFloat(qs.get('t')) || 0));
+    welcomeScreen.style.display = 'none';
+    isPlaying = qs.has('play');
+    playPauseIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
+    lastTimestamp = performance.now();
+    renderPlaybackState();
+  })();
+</script>
+</body>
+</html>

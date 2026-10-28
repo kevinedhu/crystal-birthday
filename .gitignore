@@ -1,0 +1,7 @@
+# Backups y temporales
+*.bak
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+node_modules/

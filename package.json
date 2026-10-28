@@ -1,0 +1,8 @@
+{
+  "name": "crystal-birthday",
+  "private": true,
+  "description": "Experiencia de cumpleaños para Crystal. Ejecuta `npm run build:css` tras editar clases en code.html.",
+  "scripts": {
+    "build:css": "npx -y tailwindcss@3.4.17 -c tailwind.config.js -i tailwind.input.css -o assets/tailwind.css --minify"
+  }
+}
